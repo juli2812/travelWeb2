@@ -1,0 +1,44 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 02-nov-2016, 12:18:33
+    Author     : BEC.CA2
+*/
+
+h1{
+    font-family: "Arial";
+    text-align: center;
+}
+
+.text_arial{
+    font-family: "Arial";
+}
+
+.text_arial_href_blau{
+    font-family: "Arial";
+    text-decoration:none;  
+}
+#taula_login{
+    margin: 0 auto 0 auto;
+    border: 2px solid #a1a1a1;
+    padding: 10px 40px;
+    background: #dddddd;
+    width: 300px;
+    border-radius: 25px;
+}
+
+.text_esquerra{
+    text-align: left;
+    font-family: "Arial";
+}
+
+.contingut_centre{
+    text-align: center;
+}
+
+.content_dreta{
+    text-align: right;
+}
