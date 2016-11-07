@@ -1,6 +1,6 @@
 package cat.urv.deim.sob;
 
-import java.util.Calendar;
+import java.util.Date;
 public class User {
 
     private String firstName;
@@ -9,7 +9,12 @@ public class User {
     private String email;
     private String phone;
     private String alias;
-
+    private String address;
+    private Date data_naix;
+    private String sexe;
+    private String pass;
+   
+    
     public String getAlias() {
         return alias;
     }
@@ -26,11 +31,11 @@ public class User {
         this.address = address;
     }
 
-    public Calendar getData_naix() {
+    public Date getData_naix() {
         return data_naix;
     }
 
-    public void setData_naix(Calendar data_naix) {
+    public void setData_naix(Date data_naix) {
         this.data_naix = data_naix;
     }
 
@@ -41,10 +46,7 @@ public class User {
     public void setPass(String pass) {
         this.pass = pass;
     }
-    private String address;
-    private Calendar data_naix;
-    private String sexe;
-    private String pass;
+   
     
 
     public String getFirstName() {
@@ -105,4 +107,12 @@ public class User {
                 + "Email:      " + getEmail() + "\n"
                 + "Phone:      " + getPhone() + "\n";
     }
+
+  /*  @Override
+    No se si asi retoranara todo de forma correcta.
+    public String toString() {
+        return "User{" + "firstName=" + firstName + ", lastName=" + lastName + ", lastName2=" + lastName2 + ", email=" + email + ", phone=" + phone + ", alias=" + alias + ", address=" + address + ", data_naix=" + data_naix + ", sexe=" + sexe + ", pass=" + pass + '}';
+    }
+    */
+    
 }
