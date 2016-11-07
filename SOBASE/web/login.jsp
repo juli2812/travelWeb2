@@ -20,7 +20,8 @@
             </table>
         </div>
         <font class="text_arial"><h1>Iniciar sessió</h1><font>
-        <form name="updateAccount" action="controller.do" method="post">
+        <form method="post" action="controller.do"> 
+        <input type="hidden" name="form_action" value="write"/>
             <table id="taula_login">
                 <tr>
                     <td class="text_esquerra"><b>Usuari:</b></td>
@@ -56,8 +57,5 @@
                 </tr>
             </table>
         </form>
-        <!-- <pre>
-            <jsp:getProperty name="user" property="message" /> // esto es del user.java
-        </pre> -->
     </body>
 </html>

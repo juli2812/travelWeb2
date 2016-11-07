@@ -1,6 +1,7 @@
 package cat.urv.deim.sob;
 
 import cat.urv.deim.sob.command.Command;
+import cat.urv.deim.sob.command.RegisterCommand;
 import cat.urv.deim.sob.command.WriteCommand;
 import cat.urv.deim.sob.command.InitCommand;
 import javax.servlet.*;
@@ -18,6 +19,7 @@ public class ControllerServlet extends HttpServlet {
         // list of commands
         this.commands.put("init", new InitCommand());
         this.commands.put("write", new WriteCommand());
+        this.commands.put("register", new RegisterCommand());
     }
 
     protected void processCommand(

@@ -28,14 +28,15 @@
             </table>
         </div>
         <font class="text_arial"><h1>Registrar-se</h1><font>
-        <form name="updateAccount" action="controller.do" method="post">
+        <form action="controller.do" method="post">
+        <input type="hidden" name="form_action" value="register"/>
             <table id="taula_login">
                 <tr>
                     <td class="text_esquerra"><b>Usuari:</b></td>
                     <td class="text_esquerra">
                         <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
                         associated with the onkeyup event -->
-                        <input type="text" size="20" name="idUser" autofocus/>
+                        <input type="text" size="20" name="alias" autofocus/>
                     </td>
                 </tr>
                 <tr>
@@ -47,19 +48,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="text_esquerra"><b>Confirma contrasenya:</b></td>
-                    <td class="text_esquerra">
-                        <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
-                        associated with the onkeyup event -->
-                        <input    type="password" size="20" name="pass">
-                    </td>
-                </tr>
-                <tr>
                     <td class="text_esquerra"><b>Nom:</b></td>
                     <td class="text_esquerra">
                         <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
                         associated with the onkeyup event -->
-                        <input type="text" size="20" name="nom" autofocus/>
+                        <input type="text" size="20" name="first_name" autofocus/>
                     </td>
                 </tr>
                 <tr>
@@ -67,7 +60,7 @@
                     <td class="text_esquerra">
                         <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
                         associated with the onkeyup event -->
-                        <input type="text" size="20" name="cognom1" autofocus/>
+                        <input type="text" size="20" name="last_name" autofocus/>
                     </td>
                 </tr>
                 <tr>
@@ -75,7 +68,15 @@
                     <td class="text_esquerra">
                         <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
                         associated with the onkeyup event -->
-                        <input type="text" size="20" name="cognom2" autofocus/>
+                        <input type="text" size="20" name="last_name2" autofocus/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text_esquerra"><b>Data naixement (AAAA-MM-DD):</b></td>
+                    <td class="text_esquerra">
+                        <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
+                        associated with the onkeyup event -->
+                        <input type="text" size="20" name="data_naix" autofocus/>
                     </td>
                 </tr>
                 <tr>
@@ -83,14 +84,14 @@
                     <td class="text_esquerra">
                         <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
                         associated with the onkeyup event -->
-                        <input type="text" size="40" name="adreça" autofocus/>
+                        <input type="text" size="40" name="address" autofocus/>
                     </td>
                 </tr><tr>
                     <td class="text_esquerra"><b>Telèfon:</b></td>
                     <td class="text_esquerra">
                         <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
                         associated with the onkeyup event -->
-                        <input type="text" size="10" name="telefon" autofocus/>
+                        <input type="text" size="10" name="phone" autofocus/>
                     </td>
                 </tr>
                 <tr>
@@ -98,7 +99,7 @@
                     <td class="text_esquerra">
                         <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
                         associated with the onkeyup event -->
-                        <input type="text" size="20" name="email" autofocus/>
+                        <input type="text" size="20" name="e-mail" autofocus/>
                     </td>
                 </tr>
                 <tr >
@@ -110,8 +111,5 @@
                 </tr>
             </table>
         </form>
-        <!-- <pre>
-            <jsp:getProperty name="user" property="message" /> // esto es del user.java
-        </pre> -->
     </body>
 </html>

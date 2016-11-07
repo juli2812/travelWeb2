@@ -1,6 +1,8 @@
 package cat.urv.deim.sob;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 public class User {
 
     private String firstName;
@@ -9,6 +11,10 @@ public class User {
     private String email;
     private String phone;
     private String alias;
+    private String address;
+    private Calendar data_naix;
+    private String sexe;
+    private String pass;
 
     public String getAlias() {
         return alias;
@@ -41,11 +47,6 @@ public class User {
     public void setPass(String pass) {
         this.pass = pass;
     }
-    private String address;
-    private Calendar data_naix;
-    private String sexe;
-    private String pass;
-    
 
     public String getFirstName() {
         return fixNull(this.firstName);
@@ -98,6 +99,20 @@ public class User {
         this.sexe = sexe;
     }
 
+    public String getRegconfirmat() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date data =  getData_naix().getTime();
+        String date = sdf.format(data);
+        return "\n<h2>Registre confirmat</h2>"
+                + "<b>Nom: " + getFirstName() + "</b>\n"
+                + "<b>Cognom:  " + getLastName() + "</b>\n"
+                + "<b>Cognom 2:  " + getLastName2() + "</b>\n"
+                + "<b>E-mail:      " + getEmail() + "</b>\n"
+                + "<b>Telèfon:      " + getPhone() + "</b>\n"
+                + "<b>Sexe:  " + getSexe() + "</b>\n"
+                + "<b>Data naixement:  " + date + "</b>\n";
+    }
+    
     public String getMessage() {
 
         return "\nFirst Name: " + getFirstName() + "\n"

@@ -41,7 +41,7 @@
             
             /* drop tables if they exist */
             String tablenames[] = new String[] {
-                "usuari","comanda","oferta",
+                "comanda","oferta","usuari",
             };
             for (String tablename : tablenames) {
                 try { 
