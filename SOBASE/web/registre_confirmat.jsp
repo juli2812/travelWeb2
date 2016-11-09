@@ -30,9 +30,7 @@
             <table>
                 <tr>
                     <td class="borde_gris"><font class="text_arial_blanc">
-                    <pre>
                     <jsp:getProperty name="user" property="regconfirmat" />
-                    </pre>
                     </font></td>
                 </tr>
             </table>

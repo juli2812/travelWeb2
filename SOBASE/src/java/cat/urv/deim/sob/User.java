@@ -103,15 +103,36 @@ public class User {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date data =  getData_naix().getTime();
         String date = sdf.format(data);
-        return "\n<h2>Registre confirmat</h2>"
-                + "<b>Nom: " + getFirstName() + "</b>\n"
-                + "<b>Cognom:  " + getLastName() + "</b>\n"
-                + "<b>Cognom 2:  " + getLastName2() + "</b>\n"
-                + "<b>Pass:      " + getPass() + "</b>\n"
-                + "<b>E-mail:      " + getEmail() + "</b>\n"
-                + "<b>Telèfon:      " + getPhone() + "</b>\n"
-                + "<b>Sexe:  " + getSexe() + "</b>\n"
-                + "<b>Data naixement:  " + date + "</b>\n";
+        return "<h2>Registre confirmat</h2>"
+                + "<b>Nom: " + getFirstName() + "</b><br>"
+                + "<b>Cognom:  " + getLastName() + "</b><br>"
+                + "<b>Cognom 2:  " + getLastName2() + "</b><br>"
+                + "<b>Pass:      " + getPass() + "</b><br>"
+                + "<b>E-mail:      " + getEmail() + "</b><br>"
+                + "<b>Telèfon:      " + getPhone() + "</b><br>"
+                + "<b>Sexe:  " + getSexe() + "</b><br>"
+                + "<b>Data naixement:  " + date + "</b><br>";
+    }
+    public String getInfoAccount() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date data =  getData_naix().getTime();
+        String date = sdf.format(data);
+        String passLong="";
+        for(int i=0; i<getPass().length(); i++){
+            passLong=passLong+"*";
+        }
+        return "<h2>Registre confirmat</h2>"
+                + "<b>Nom complert:    </b>" + getLastName()+" "+ getLastName2() +", "+ getFirstName() + "<br>"
+                + "<b>Nom:             </b>" + getFirstName() + "<br>"
+                + "<b>Cognom:          </b>" + getLastName() + "<br>"
+                + "<b>Cognom 2:        </b>" + getLastName2() + "<br>"
+                + "<b>Sexe:            </b>" + getSexe() + "<br>"
+                + "<b>Data naixement:  </b>" + date + "<br>"
+                + "<b>Usuari:          </b>" + getAlias() + "<br>"
+                + "<b>Pass:            </b>" + passLong + "<br>"
+                + "<b>E-mail:          </b>" + getEmail() + "<br>"
+                + "<b>Adreça:          </b>" + getAddress() + "<br>"
+                + "<b>Telèfon:         </b>" + getPhone() + "<br>";
     }
     
     public String getMessage() {
