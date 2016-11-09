@@ -56,7 +56,7 @@
             String tables[] = new String[] {
                 "CREATE TABLE " + dbname + ".usuari (" +
                     " alias VARCHAR(10) PRIMARY KEY NOT NULL," + " contrasenya VARCHAR(10) NOT NULL,"+
-                    " nom VARCHAR(20) NOT NULL,"+"cognom1 VARCHAR(12) NOT NULL,"+"cognom2 VARCHAR(12),"+"adreça VARCHAR(50) NOT NULL,"+"telefon CHAR(9),"+"email VARCHAR(40) NOT NULL,"+"data_naix DATE NOT NULL)",
+                    " nom VARCHAR(20) NOT NULL,"+"cognom1 VARCHAR(12) NOT NULL,"+"cognom2 VARCHAR(12),"+"adreça VARCHAR(50) NOT NULL,"+"telefon CHAR(9),"+"email VARCHAR(50) NOT NULL,"+"data_naix DATE NOT NULL)",
                 "CREATE TABLE " + dbname + ".comanda (" +
                     " id_comanda INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)," + 
                     " id_usuari VARCHAR(10),"+"id_oferta INT NOT NULL,"+"preu_total FLOAT NOT NULL,"+"personas INT NOT NULL,"+"data DATE NOT NULL,"+"hora TIME NOT NULL)",

@@ -21,14 +21,14 @@
         </div>
         <font class="text_arial"><h1>Iniciar sessió</h1><font>
         <form method="post" action="controller.do"> 
-        <input type="hidden" name="form_action" value="write"/>
+        <input type="hidden" name="form_action" value="login"/>
             <table id="taula_login">
                 <tr>
                     <td class="text_esquerra"><b>Usuari:</b></td>
                     <td class="content_dreta">
                         <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
                         associated with the onkeyup event -->
-                        <input type="text" size="20" name="idUser" autofocus/>
+                        <input type="text" size="20" name="alias" autofocus/>
                     </td>
                 </tr>
                 <tr>
@@ -39,13 +39,13 @@
                         <input    type="password" size="20" name="pass">
                     </td>
                 </tr>
-                <tr>
-                    <td > </td>    
-                    <td>
-                        <%  if((request.getParameter("correctEnter")!=null) && request.getParameter("correctEnter").equals("false")){
-                                 out.println("Incorrect data");
+                <tr>   
+                    <td class="error" colspan="2"><b>
+                        <%
+                            if((request.getParameter("dadesErronees")!=null) && request.getParameter("dadesErronees").equals("true")){
+                                 out.println("Dades èrronees");
                         }
-                        %> 
+                            %></b>
                     </td>
                 </tr>
                 <tr >

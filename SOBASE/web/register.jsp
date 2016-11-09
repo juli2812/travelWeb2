@@ -60,7 +60,7 @@
                     <td class="text_esquerra">
                         <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
                         associated with the onkeyup event -->
-                        <input type="text" size="20" name="last_name" autofocus/>
+                        <input type="text" size="12" name="last_name" autofocus/>
                     </td>
                 </tr>
                 <tr>
@@ -68,7 +68,7 @@
                     <td class="text_esquerra">
                         <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
                         associated with the onkeyup event -->
-                        <input type="text" size="20" name="last_name2" autofocus/>
+                        <input type="text" size="12" name="last_name2" autofocus/>
                     </td>
                 </tr>
                 <tr>
@@ -84,14 +84,14 @@
                     <td class="text_esquerra">
                         <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
                         associated with the onkeyup event -->
-                        <input type="text" size="40" name="address" autofocus/>
+                        <input type="text" size="50" name="address" autofocus/>
                     </td>
                 </tr><tr>
                     <td class="text_esquerra"><b>Telèfon:</b></td>
                     <td class="text_esquerra">
                         <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
                         associated with the onkeyup event -->
-                        <input type="text" size="10" name="phone" autofocus/>
+                        <input type="text" size="9" name="phone" autofocus/>
                     </td>
                 </tr>
                 <tr>
@@ -99,7 +99,56 @@
                     <td class="text_esquerra">
                         <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
                         associated with the onkeyup event -->
-                        <input type="text" size="20" name="e-mail" autofocus/>
+                        <input type="text" size="50" name="email" autofocus/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="error" colspan="2"><b>
+                        <%
+                            if((request.getParameter("totCorrecte")!=null) && request.getParameter("totCorrecte").equals("false")){
+                                 out.println("Dades èrronees");
+                        }
+                            %></b>
+                        <%
+                            if((request.getParameter("codiError")!=null) && request.getParameter("codiError").equals("1")){
+                                 out.println("<br>Camp usuari obligatori, amb mida de 8 a 10 caràcters.");
+                        }
+                            %>
+                            <%
+                            if((request.getParameter("codiError")!=null) && request.getParameter("codiError").equals("2")){
+                                 out.println("<br>Camp contrasenya obligatori, amb mida de 8 a 10 caràcters.");
+                        }
+                            %>
+                            <%
+                            if((request.getParameter("codiError")!=null) && request.getParameter("codiError").equals("3")){
+                                 out.println("<br>Camp nom obligatori, limitació a 20 caràcters.");
+                        }
+                            %>
+                            <%
+                            if((request.getParameter("codiError")!=null) && request.getParameter("codiError").equals("4")){
+                                 out.println("<br>Camp primer cognom obligatori, limitació de 12 caràcters");
+                        }
+                            %>
+                            <%
+                            if((request.getParameter("codiError")!=null) && request.getParameter("codiError").equals("5")){
+                                 out.println("<br>Camp data naixement obligatori, respecta el format.");
+                        }
+                            %>
+                            <%
+                            if((request.getParameter("codiError")!=null) && request.getParameter("codiError").equals("6")){
+                                 out.println("<br>Camp adreça obligatoria, limitació de 50 caràcters, utilitza abreviacions.");
+                        }
+                            %>
+                            <%
+                            if((request.getParameter("codiError")!=null) && request.getParameter("codiError").equals("7")){
+                                 out.println("<br>Camp telèfon si l'introdueixes ha de tenir 9 dígits.");
+                        }
+                            %>
+                            <%
+                            if((request.getParameter("codiError")!=null) && request.getParameter("codiError").equals("8")){
+                                 out.println("<br>Camp email obligatori, limitació de 50 caràcters");
+                        }
+                            %>
                     </td>
                 </tr>
                 <tr >

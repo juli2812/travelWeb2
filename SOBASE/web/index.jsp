@@ -7,6 +7,11 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="css/index.css"/>
+        <%@ page session="true" %>
+        <%
+            String userLogin = (String) session.getAttribute("aliasLogin");
+        %>
+    </head>
         <title>Viajar te da alas</title>
     </head>
     <body>
@@ -14,7 +19,8 @@
             <table class="totample">
                 <tr>
                     <td id="barra_inici">
-                        <a class="text_arial_href" href="login.jsp"><b>Iniciar Sessió</b></a> <font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="register.jsp"><b>Registrar-se</b></a>
+                        <%if(userLogin!=null){%><a class="text_arial_href" href="register.jsp"><b>Benvingut <%=userLogin%>! <font class="text_arial_href"></b></a><font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="register.jsp"><b>Tancar sessió</b></a><%}else{%><a class="text_arial_href" href="login.jsp"><b>Iniciar Sessió </b></a> <font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="register.jsp"><b>Registrar-se</b></a>
+                        <%}%>
                     </td>
                 </tr>
             </table>

@@ -107,6 +107,7 @@ public class User {
                 + "<b>Nom: " + getFirstName() + "</b>\n"
                 + "<b>Cognom:  " + getLastName() + "</b>\n"
                 + "<b>Cognom 2:  " + getLastName2() + "</b>\n"
+                + "<b>Pass:      " + getPass() + "</b>\n"
                 + "<b>E-mail:      " + getEmail() + "</b>\n"
                 + "<b>Telèfon:      " + getPhone() + "</b>\n"
                 + "<b>Sexe:  " + getSexe() + "</b>\n"
