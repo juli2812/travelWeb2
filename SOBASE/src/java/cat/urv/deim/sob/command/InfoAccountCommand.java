@@ -35,13 +35,12 @@ public class InfoAccountCommand implements Command{
         String userLogin = (String) session.getAttribute("aliasLogin");
         DAOuser d=new DAOuser();
         try {
-            d.getOfertes(userLogin);
+            session.setAttribute("dadesUsuari", d.getOfertes(userLogin));
         } catch (SQLException ex) {
             Logger.getLogger(InfoAccountCommand.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
             Logger.getLogger(InfoAccountCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
-        session.setAttribute("dadesUsuari", d);
         ServletContext context = request.getSession().getServletContext();
                 context.getRequestDispatcher("/my_account.jsp").forward(request, response);}
 }
