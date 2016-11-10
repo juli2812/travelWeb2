@@ -23,6 +23,18 @@ private Date departure_date;
 private Date arrival_date; //comprobar que es igual a departure_date + stay_days
 private int stay_days;
 
+    public Offer(int oferr_id, String offer_title, String description, int available_sits, float price_pperson, String destination, int stay_days) {
+        this.oferr_id = oferr_id;
+        this.offer_title = offer_title;
+        this.description = description;
+        this.available_sits = available_sits;
+        this.price_pperson = price_pperson;
+        this.destination = destination;
+        this.stay_days = stay_days;
+    }
+
+
+
     public int getOferr_id() {
         return oferr_id;
     }

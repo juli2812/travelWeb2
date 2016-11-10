@@ -16,6 +16,22 @@ public class User {
     private String sexe;
     private String pass;
 
+    public User(String firstName, String lastName, String lastName2, String email, String phone, String alias, String address, Calendar data_naix, String sexe, String pass) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.lastName2 = lastName2;
+        this.email = email;
+        this.phone = phone;
+        this.alias = alias;
+        this.address = address;
+        this.data_naix = data_naix;
+        this.sexe = sexe;
+        this.pass = pass;
+    }
+    
+    public User(){
+    }
+
     public String getAlias() {
         return alias;
     }

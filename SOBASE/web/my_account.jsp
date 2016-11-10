@@ -4,6 +4,8 @@
     Author     : BEC.CA2
 --%>
 
+<%@page import="cat.urv.deim.sob.User"%>
+<%@page import="cat.urv.deim.dao.DAOuser"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,15 +14,18 @@
         <%@ page session="true" %>
         <%
             String userLogin = (String) session.getAttribute("aliasLogin");
+            User usuari;
+            usuari = (User) session.getAttribute("dadesUsuari");
         %>
         <title>Viajar te da alas</title>
     </head>
     <body>
         <div id="menu_inicial">
             <table class="totample">
-                <tr>
+                <tr><td><a class="text_arial_href" href="index_ofertes.jsp"><b>SafeTravel</b></a></td>
                     <td id="barra_inici">
-                        <%if(userLogin!=null){%><a class="text_arial_href" href="register.jsp"><b>Benvingut <%=userLogin%>! </b></a><font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="register.jsp"><b>Tancar sessió</b></a><%}%>
+                        <%if(userLogin!=null){%><a class="text_arial_href" href="controller.do?form_action=infoaccount"><b>Benvingut <%=userLogin%>! </b></a><font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="register.jsp"><b>Tancar sessió</b></a><%}else{%><a class="text_arial_href" href="login.jsp"><b>Iniciar Sessió </b></a> <font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="register.jsp"><b>Registrar-se</b></a>
+                        <%}%>
                     </td>
                 </tr>
             </table>

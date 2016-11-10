@@ -109,28 +109,11 @@ public class RegisterCommand implements Command{
             ServletContext context = request.getSession().getServletContext();
             if(totCorrecte){
             context.getRequestDispatcher("/registre_confirmat.jsp").forward(request, response);
-            }else if(codiError==1){
-                context.getRequestDispatcher("/register.jsp?totCorrecte=false&codiError=1").forward(request, response);
-            }else if(codiError==2){
-                context.getRequestDispatcher("/register.jsp?totCorrecte=false&codiError=2").forward(request, response);
-            }else if(codiError==3){
-                context.getRequestDispatcher("/register.jsp?totCorrecte=false&codiError=3").forward(request, response);
-            }else if(codiError==4){
-                context.getRequestDispatcher("/register.jsp?totCorrecte=false&codiError=4").forward(request, response);
-            }else if(codiError==5){
-                context.getRequestDispatcher("/register.jsp?totCorrecte=false&codiError=5").forward(request, response);
-            }else if(codiError==6){
-                context.getRequestDispatcher("/register.jsp?totCorrecte=false&codiError=6").forward(request, response);
-            }else if(codiError==7){
-                context.getRequestDispatcher("/register.jsp?totCorrecte=false&codiError=7").forward(request, response);
-            }else if(codiError==8){
-                context.getRequestDispatcher("/register.jsp?totCorrecte=false&codiError=8").forward(request, response);
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(RegisterCommand.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(RegisterCommand.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
+            if(codiError!=0){
+                context.getRequestDispatcher("/register.jsp?totCorrecte=false&codiError="+codiError).forward(request, response);
+            }
+        } catch (ClassNotFoundException | SQLException | ParseException ex) {
             Logger.getLogger(RegisterCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

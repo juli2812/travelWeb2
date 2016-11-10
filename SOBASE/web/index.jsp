@@ -20,7 +20,7 @@
         <br>
             <table class="totample">
                 <tr>
-                    <td class="borde_gris" colspan="2"><img src="css/playa.jpeg" alt="Smiley face" height="800px" width="1000px" align="left"><font class="text_arial_blanc">Benvingut a <b>SafeTravel</b> en aquesta pàgina web trobaràs tot estil de viatjes, esperem que tinguis unes agradables vacances.<br><br><b><a href="init.do">Entrar a SafeTravel</a></b></font></td>
+                    <td class="borde_gris" colspan="2"><img src="css/playa.jpeg" alt="Smiley face" height="800px" width="1000px" align="left"><font class="text_arial_blanc">Benvingut a <b>SafeTravel</b> en aquesta pàgina web trobaràs tot estil de viatjes, esperem que tinguis unes agradables vacances.<br><br><b><a href="controller.do">Entrar a SafeTravel</a></b></font></td>
             </table>
     </body>
 </html>

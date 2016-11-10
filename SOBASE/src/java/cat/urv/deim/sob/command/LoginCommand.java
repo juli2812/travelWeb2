@@ -50,7 +50,7 @@ public class LoginCommand implements Command{
             if (resultSet.next()) {     //if is correct go to main
                 session.setAttribute("aliasLogin", alias);
                 ServletContext context = request.getSession().getServletContext();
-                context.getRequestDispatcher("/index.jsp").forward(request, response);
+                context.getRequestDispatcher("/index_ofertes.jsp").forward(request, response);
             }
             else{ServletContext context = request.getSession().getServletContext();
                 context.getRequestDispatcher("/login.jsp?dadesErronees=true").forward(request, response);}
