@@ -76,6 +76,7 @@
                                 <%session.setAttribute("idOferta", oferta.getOffer_id());%>
                                 <%}else{%>
                                 <input type="hidden" name="form_action" value="login"/>
+                                <input type="hidden" name="oferta_id" value="<%=oferta.getOffer_id()%>"/>
                                 <%}%>
                                 <td class="contingut_centre"><input class="text_arial" id="buttonEnter" type="Submit" value="Reservar"></td>         
                                 

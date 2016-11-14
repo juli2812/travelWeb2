@@ -113,7 +113,11 @@ public class RegisterCommand implements Command{
             context.getRequestDispatcher("/registre_confirmat.jsp").forward(request, response);
             }
             if(codiError!=0){
-                context.getRequestDispatcher("/register.jsp?totCorrecte=false&codiError="+codiError).forward(request, response);
+                context.getRequestDispatcher("/register.jsp?totCorrecte=false&codiError="+codiError+
+                        "&alias="+request.getParameter("alias")+"&first_name="+request.getParameter("first_name")
+                        +"&last_name="+request.getParameter("last_name")+"&last_name2="+request.getParameter("last_name2")
+                        +"&data_naix="+request.getParameter("data_naix")+"&address="+request.getParameter("address")+"&phone="
+                        +request.getParameter("phone")+"&email="+request.getParameter("email")).forward(request, response);
             }
         } catch (ClassNotFoundException | SQLException | ParseException ex) {
             Logger.getLogger(RegisterCommand.class.getName()).log(Level.SEVERE, null, ex);

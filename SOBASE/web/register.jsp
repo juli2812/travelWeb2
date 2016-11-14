@@ -49,72 +49,86 @@
                 <tr>
                     <td class="text_esquerra"><b>Usuari:</b></td>
                     <td class="text_esquerra">
-                        <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
-                        associated with the onkeyup event -->
+                        <%if(request.getParameter("alias")!=null){%>
+                        <input type="text" size="20" name="alias"  value="<%=request.getParameter("alias")%>"autofocus/>
+                        <%}else{%>
                         <input type="text" size="20" name="alias" autofocus/>
+                        <%}%>
                     </td>
                 </tr>
                 <tr>
                     <td class="text_esquerra"><b>Contrasenya:</b></td>
                     <td class="text_esquerra">
-                        <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
-                        associated with the onkeyup event -->
                         <input    type="password" size="20" name="pass">
                     </td>
                 </tr>
                 <tr>
                     <td class="text_esquerra"><b>Nom:</b></td>
                     <td class="text_esquerra">
-                        <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
-                        associated with the onkeyup event -->
+                        <%if(request.getParameter("first_name")!=null){%>
+                        <input type="text" size="20" name="first_name"  value="<%=request.getParameter("first_name")%>"autofocus/>
+                        <%}else{%>
                         <input type="text" size="20" name="first_name" autofocus/>
+                        <%}%>
                     </td>
                 </tr>
                 <tr>
                     <td class="text_esquerra"><b>Primer cognom:</b></td>
                     <td class="text_esquerra">
-                        <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
-                        associated with the onkeyup event -->
+                        <%if(request.getParameter("last_name")!=null){%>
+                        <input type="text" size="12" name="last_name"  value="<%=request.getParameter("last_name")%>"autofocus/>
+                        <%}else{%>
                         <input type="text" size="12" name="last_name" autofocus/>
+                        <%}%>
                     </td>
                 </tr>
                 <tr>
                     <td class="text_esquerra"><b>Segon cognom:</b></td>
                     <td class="text_esquerra">
-                        <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
-                        associated with the onkeyup event -->
+                        <%if(request.getParameter("last_name2")!=null){%>
+                        <input type="text" size="12" name="last_name2"  value="<%=request.getParameter("last_name2")%>"autofocus/>
+                        <%}else{%>
                         <input type="text" size="12" name="last_name2" autofocus/>
+                        <%}%>
                     </td>
                 </tr>
                 <tr>
                     <td class="text_esquerra"><b>Data naixement (AAAA-MM-DD):</b></td>
                     <td class="text_esquerra">
-                        <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
-                        associated with the onkeyup event -->
+                        <%if(request.getParameter("data_naix")!=null){%>
+                        <input type="text" size="20" name="data_naix"  value="<%=request.getParameter("data_naix")%>"autofocus/>
+                        <%}else{%>
                         <input type="text" size="20" name="data_naix" autofocus/>
+                        <%}%>
                     </td>
                 </tr>
                 <tr>
                     <td class="text_esquerra"><b>Adreça:</b></td>
                     <td class="text_esquerra">
-                        <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
-                        associated with the onkeyup event -->
+                        <%if(request.getParameter("address")!=null){%>
+                        <input type="text" size="50" name="address"  value="<%=request.getParameter("address")%>"autofocus/>
+                        <%}else{%>
                         <input type="text" size="50" name="address" autofocus/>
+                        <%}%>
                     </td>
                 </tr><tr>
                     <td class="text_esquerra"><b>Telèfon:</b></td>
                     <td class="text_esquerra">
-                        <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
-                        associated with the onkeyup event -->
+                        <%if(request.getParameter("phone")!=null){%>
+                        <input type="text" size="9" name="phone"  value="<%=request.getParameter("phone")%>"autofocus/>
+                        <%}else{%>
                         <input type="text" size="9" name="phone" autofocus/>
+                        <%}%>
                     </td>
                 </tr>
                 <tr>
                     <td class="text_esquerra"><b>E-mail:</b></td>
                     <td class="text_esquerra">
-                        <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
-                        associated with the onkeyup event -->
+                        <%if(request.getParameter("email")!=null){%>
+                        <input type="text" size="50" name="email"  value="<%=request.getParameter("email")%>"autofocus/>
+                        <%}else{%>
                         <input type="text" size="50" name="email" autofocus/>
+                        <%}%>
                     </td>
                 </tr>
                 <tr>

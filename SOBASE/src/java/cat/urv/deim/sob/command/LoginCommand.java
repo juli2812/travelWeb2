@@ -46,7 +46,11 @@ public class LoginCommand implements Command{
             if (a.equals(alias)) {     //if is correct go to main
                 session.setAttribute("aliasLogin", a);
                 ServletContext context = request.getSession().getServletContext();
-                context.getRequestDispatcher("/index.jsp").forward(request, response);
+                if(null!=request.getParameter("oferta_id")||null!=request.getParameter("placesReserva")){
+                    int oferta_id = Integer.parseInt(request.getParameter("oferta_id"));
+                    int placesReserva=Integer.parseInt("placesReserva");
+                    context.getRequestDispatcher("/register.jsp").forward(request, response);}
+                else context.getRequestDispatcher("/index.jsp").forward(request, response);
             }
             else{ServletContext context = request.getSession().getServletContext();
                 context.getRequestDispatcher("/login.jsp?dadesErronees=true").forward(request, response);}
