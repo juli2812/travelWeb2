@@ -6,7 +6,9 @@
 package cat.urv.deim.sob;
 
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -17,11 +19,11 @@ private float total_price;
 private int order_id;
 private Calendar order_date;
 private Time order_time;
-private String offer_id; 
+private int offer_id; 
 private int people;
 private String user_id;
 
-    public Order(float total_price, int order_id, Calendar order_date, Time order_time, String offer_id, int people, String user_id) {
+    public Order(float total_price, int order_id, Calendar order_date, Time order_time, int offer_id, int people, String user_id) {
         this.total_price = total_price;
         this.order_id = order_id;
         this.order_date = order_date;
@@ -49,7 +51,7 @@ private String user_id;
         return order_time;
     }
 
-    public String getOffer_id() {
+    public int getOffer_id() {
         return offer_id;
     }
 
@@ -77,7 +79,7 @@ private String user_id;
         this.order_time = order_time;
     }
 
-    public void setOffer_id(String offer_id) {
+    public void setOffer_id(int offer_id) {
         this.offer_id = offer_id;
     }
 
@@ -88,12 +90,12 @@ private String user_id;
     public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
-/*
-    @Override
-    public String toString() {
-        return "Order{" + "total_price=" + total_price + ", order_id=" + order_id + ", order_date=" + order_date + ", order_time=" + order_time + ", offer_id=" + offer_id + ", people=" + people + ", user_id=" + user_id + '}';
+    public String getComandaInfo() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date data =  getOrder_date().getTime();
+        String date = sdf.format(data);
+        return "<b>#"+order_id+"</b> Aquesta comanda ha estat realitzada per un total de "+people+" persones. El preu total és de "+total_price+" euros, reservat amb data "+date+" a les "+getOrder_time().toString()+" la oferta és la núm. "+offer_id;
     }
-*/
 
   
 }

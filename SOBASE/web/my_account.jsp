@@ -53,12 +53,17 @@
         <br>
             <table>
                 <tr>
-                    <td class="borde_gris"><img src="css/playa.jpeg" alt="Smiley face" height="480px" width="640px"></td>
+                    <td class="borde_gris"><img src="css/usuari.jpg" alt="Smiley face" height="120px" width="120px"></td>
                     <td class="borde_gris"><font class="text_arial_blanc">
                     <h2>Dades usuari</h2><br>
                     <%=usuari.getInfoaccount()%></font>
-                    <%comanda=listaComandes.get(0);%>
-                    <%=comanda.getUser_id()%></td>
+                    </td>
+                    <td class="borde_gris"><font class="text_arial_blanc">
+                        <h1>Comandes:</h1>
+                        <%for(int j=0; j<listaComandes.size();j++){%>
+                    <%comanda=listaComandes.get(j);%>
+                    <%=comanda.getComandaInfo()%><br><%}%></font>
+                    </td>
                 </tr>
             </table>
     </body>

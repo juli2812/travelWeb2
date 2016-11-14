@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Offer {
     
-private int oferr_id;
+private int offer_id;
 private String offer_title; 
 private String description;
 private int available_sits;
@@ -23,8 +23,8 @@ private Date departure_date;
 private Date arrival_date; //comprobar que es igual a departure_date + stay_days
 private int stay_days;
 
-    public Offer(int oferr_id, String offer_title, String description, int available_sits, float price_pperson, String destination, int stay_days) {
-        this.oferr_id = oferr_id;
+    public Offer(int offer_id, String offer_title, String description, int available_sits, float price_pperson, String destination, int stay_days) {
+        this.offer_id = offer_id;
         this.offer_title = offer_title;
         this.description = description;
         this.available_sits = available_sits;
@@ -35,8 +35,8 @@ private int stay_days;
 
 
 
-    public int getOferr_id() {
-        return oferr_id;
+    public int getOffer_id() {
+        return offer_id;
     }
 
     public String getOffer_title() {
@@ -71,8 +71,8 @@ private int stay_days;
         return stay_days;
     }
 
-    public void setOferr_id(int oferr_id) {
-        this.oferr_id = oferr_id;
+    public void setOffer_id(int offer_id) {
+        this.offer_id = offer_id;
     }
 
     public void setOffer_title(String offer_title) {

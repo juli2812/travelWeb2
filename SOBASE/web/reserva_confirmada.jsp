@@ -43,7 +43,7 @@
         <br>
             <table>
                 <tr>
-                    <td class="borde_gris"><img src="css/playa.jpeg" alt="Smiley face" height="240px" width="400px"></td>
+                    <td class="borde_gris"><img src="css/Dubai.jpg.jpeg" alt="Smiley face" height="240px" width="400px"></td>
                     <td class="borde_gris"><font class="text_arial_blanc">
                     <h2>Reserva confirmada</h2>
                     <b>#0104324 núm. de reserva</b><br><br>

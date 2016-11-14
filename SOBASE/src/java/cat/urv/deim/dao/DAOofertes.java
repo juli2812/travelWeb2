@@ -33,4 +33,30 @@ public class DAOofertes {
         }
         return ofertes;
     }
+    
+    public Offer getOferta(int id_oferta) throws SQLException {
+        Offer oferta = null;
+            Connection con;
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
+            con.setSchema("DEMODB");
+            String query = "SELECT * FROM demodb.oferta where oferta_id=?";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, id_oferta);
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                oferta=new Offer(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getInt(4),resultSet.getFloat(5),resultSet.getString(6),resultSet.getInt(9));
+        }
+        return oferta;
+    }
+    public void modificaOferta(int places_disp, int id_oferta) throws SQLException {
+        Offer oferta = null;
+            Connection con;
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
+            con.setSchema("DEMODB");
+            String query = "UPDATE DEMODB.OFERTA SET places_disp=? WHERE oferta_id=?";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, places_disp);
+            ps.setInt(2, id_oferta);
+            ps.execute();
+    }
 }

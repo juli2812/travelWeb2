@@ -43,9 +43,7 @@ public class InfoAccountCommand implements Command{
         try {
             user = users.getUsuari(userLogin);
             orderss = orders.getComandes(userLogin);
-        } catch (SQLException ex) {
-            Logger.getLogger(InfoAccountCommand.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
+        } catch (SQLException | ParseException ex) {
             Logger.getLogger(InfoAccountCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
         session.setAttribute("dadesUsuari", user);

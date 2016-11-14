@@ -7,6 +7,7 @@ import cat.urv.deim.sob.command.InitCommand;
 import cat.urv.deim.sob.command.LoginCommand;
 import cat.urv.deim.sob.command.InfoAccountCommand;
 import cat.urv.deim.sob.command.LogoutCommand;
+import cat.urv.deim.sob.command.ReservarCommand;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.*;
@@ -26,6 +27,7 @@ public class ControllerServlet extends HttpServlet {
         this.commands.put("login", new LoginCommand());
         this.commands.put("infoaccount", new InfoAccountCommand());
         this.commands.put("logout", new LogoutCommand());
+        this.commands.put("reservar", new ReservarCommand());
     }
 
     protected void processCommand(
