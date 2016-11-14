@@ -23,17 +23,16 @@ import java.util.Date;
  * @author BEC.CA2
  */
 public class DAOuser {
-    public User getOfertes(String alias) throws SQLException, ParseException {
-            Connection con;
+    public User getUsuari(String alias) throws SQLException, ParseException {
+        Connection con;
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
             con.setSchema("DEMODB");
-            String query = "SELECT * FROM demodb.oferta WHERE alias=?";
+            String query = "SELECT * FROM DEMODB.USUARI where alias = ?";
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, alias);
             ResultSet resultSet=ps.executeQuery();
             User user=null;
             if (resultSet.next()) {
-                
             SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-MM-dd"); 
             Date dateObj = curFormater.parse(resultSet.getString(9)); 
             Calendar calendar = Calendar.getInstance();
@@ -56,6 +55,6 @@ public class DAOuser {
             if (resultSet.next()) {
             return alias;
             }
-            else return null;
+            else return "";
     }
 }

@@ -37,7 +37,7 @@ public class LogoutCommand implements Command{
         
         //Redirecciono a index.jsp
         ServletContext context = request.getSession().getServletContext();
-        context.getRequestDispatcher("/index_ofertes.jsp").forward(request, response);
+        context.getRequestDispatcher("/index.jsp").forward(request, response);
     
     }
 }

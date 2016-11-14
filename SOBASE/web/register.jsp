@@ -20,9 +20,19 @@
     <body>
         <div id="menu_inicial">
             <table class="totample">
-                <tr><td><a class="text_arial_href" href="index_ofertes.jsp"><b>SafeTravel</b></a></td>
+                <tr>
+                    <td>
+                        <a class="text_arial_href" href="index.jsp"><b>SafeTravel</b></a>
+                    </td>
                     <td id="barra_inici">
-                        <%if(userLogin!=null){%><a class="text_arial_href" href="controller.do?form_action=infoaccount"><b>Benvingut <%=userLogin%>! </b></a><font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="register.jsp"><b>Tancar sessió</b></a><%}else{%><a class="text_arial_href" href="login.jsp"><b>Iniciar Sessió </b></a> <font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="register.jsp"><b>Registrar-se</b></a>
+                        <%if(userLogin!=null){%>
+                        
+                        <a class="text_arial_href" href="controller.do?form_action=infoaccount"><b>Benvingut <%=userLogin%>! </b></a><font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="controller.do?form_action=logout"><b>Tancar sessió</b></a>
+                        
+                        <%}else{%>
+                        
+                        <a class="text_arial_href" href="login.jsp"><b>Iniciar Sessió </b></a> <font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="register.jsp"><b>Registrar-se</b></a>
+                        
                         <%}%>
                     </td>
                 </tr>

@@ -4,6 +4,9 @@
     Author     : BEC.CA2
 --%>
 
+<%@page import="cat.urv.deim.dao.DAOorder"%>
+<%@page import="cat.urv.deim.sob.Order"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="cat.urv.deim.sob.User"%>
 <%@page import="cat.urv.deim.dao.DAOuser"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,15 +19,27 @@
             String userLogin = (String) session.getAttribute("aliasLogin");
             User usuari;
             usuari = (User) session.getAttribute("dadesUsuari");
-        %>
+            ArrayList<Order> listaComandes = (ArrayList<Order>) session.getAttribute("dadesComandes");
+            Order comanda = null;
+            %>
         <title>Viajar te da alas</title>
     </head>
     <body>
         <div id="menu_inicial">
             <table class="totample">
-                <tr><td><a class="text_arial_href" href="index_ofertes.jsp"><b>SafeTravel</b></a></td>
+                <tr>
+                    <td>
+                        <a class="text_arial_href" href="index.jsp"><b>SafeTravel</b></a>
+                    </td>
                     <td id="barra_inici">
-                        <%if(userLogin!=null){%><a class="text_arial_href" href="controller.do?form_action=infoaccount"><b>Benvingut <%=userLogin%>! </b></a><font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="register.jsp"><b>Tancar sessió</b></a><%}else{%><a class="text_arial_href" href="login.jsp"><b>Iniciar Sessió </b></a> <font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="register.jsp"><b>Registrar-se</b></a>
+                        <%if(userLogin!=null){%>
+                        
+                        <a class="text_arial_href" href="controller.do?form_action=infoaccount"><b>Benvingut <%=userLogin%>! </b></a><font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="controller.do?form_action=logout"><b>Tancar sessió</b></a>
+                        
+                        <%}else{%>
+                        
+                        <a class="text_arial_href" href="login.jsp"><b>Iniciar Sessió </b></a> <font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="register.jsp"><b>Registrar-se</b></a>
+                        
                         <%}%>
                     </td>
                 </tr>
@@ -40,34 +55,10 @@
                 <tr>
                     <td class="borde_gris"><img src="css/playa.jpeg" alt="Smiley face" height="480px" width="640px"></td>
                     <td class="borde_gris"><font class="text_arial_blanc">
-                    <h2>Estada a Brasil</h2>
-                    Destí: Brasil<br><br>
-                    Temps d'estada: 7 dies<br><br>
-                    Preu: 3288,78 euros<br><br>
-                    Dia sortida: 27 d'abril de 2017<br><br>
-                    Dia tornada: 4 de maig de 2017<br><br>
-                    Places disponibles: 17<br><br>
-                    Companyia d'avió: Luftansa<br><br><br>
-                    L'estada a Brasil inclou 4 dies en l'Hotel Rio de Janeiro de 5 estrelles amb vistes a la platja, i després 3 dies d'estada en l'Hotel Sao Paulo de 4 estrelles.<br>
-                    <form name="updateAccount" action="controller.do" method="post">
-                        <table id="taula_login">
-                            <tr>
-                                <td class="text_esquerra"><b>Places a reservar:</b></td>
-                                <td class="content_dreta">
-                                    <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
-                                    associated with the onkeyup event -->
-                                    <input type="text" size="3" name="idUser" autofocus/>
-                                </td>
-                            </tr>
-                            <tr >
-                                <td class="contingut_centre"><input class="text_arial" id="buttonEnter" type="Submit" value="Reservar"></td>         
-
-                            </tr>
-                        </table>
-                    </form></font></td>
-                </tr>
-                <tr><td class="borde_gris" colspan="2"><font class="text_arial_blanc">
-                        L'estada a Brasil inclou 4 dies en l'Hotel Rio de Janeiro de 5 estrelles amb vistes a la platja, i després 3 dies d'estada en l'Hotel Sao Paulo de 4 estrelles.</font></td>
+                    <h2>Dades usuari</h2><br>
+                    <%=usuari.getInfoaccount()%></font>
+                    <%comanda=listaComandes.get(0);%>
+                    <%=comanda.getUser_id()%></td>
                 </tr>
             </table>
     </body>

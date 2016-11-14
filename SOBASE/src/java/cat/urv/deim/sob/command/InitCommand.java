@@ -27,7 +27,7 @@ public class InitCommand implements Command {
             // 1. process the request
            
                 ServletContext context = request.getSession().getServletContext();
-                context.getRequestDispatcher("/index_ofertes.jsp").forward(request, response);
+                context.getRequestDispatcher("/index.jsp").forward(request, response);
             
     }
 }

@@ -129,7 +129,7 @@ public class User {
                 + "<b>Sexe:  " + getSexe() + "</b><br>"
                 + "<b>Data naixement:  " + date + "</b><br>";
     }
-    public String getInfoAccount() {
+    public String getInfoaccount() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date data =  getData_naix().getTime();
         String date = sdf.format(data);
@@ -137,8 +137,7 @@ public class User {
         for(int i=0; i<getPass().length(); i++){
             passLong=passLong+"*";
         }
-        return "<h2>Registre confirmat</h2>"
-                + "<b>Nom complert:    </b>" + getLastName()+" "+ getLastName2() +", "+ getFirstName() + "<br>"
+        return "<b>Nom complert:    </b>" + getLastName()+" "+ getLastName2() +", "+ getFirstName() + "<br>"
                 + "<b>Nom:             </b>" + getFirstName() + "<br>"
                 + "<b>Cognom:          </b>" + getLastName() + "<br>"
                 + "<b>Cognom 2:        </b>" + getLastName2() + "<br>"

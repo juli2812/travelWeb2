@@ -9,14 +9,29 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="css/index.css"/>
+        <%@ page session="true" %>
+        <%
+            String userLogin = (String) session.getAttribute("aliasLogin");
+        %>
         <title>Viajar te da alas</title>
     </head>
     <body>
         <div id="menu_inicial">
             <table class="totample">
                 <tr>
+                    <td>
+                        <a class="text_arial_href" href="index.jsp"><b>SafeTravel</b></a>
+                    </td>
                     <td id="barra_inici">
-                        <a class="text_arial_href" href="login.jsp"><b>Iniciar Sessió</b></a> <font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="register.jsp"><b>Registrar-se</b></a>
+                        <%if(userLogin!=null){%>
+                        
+                        <a class="text_arial_href" href="controller.do?form_action=infoaccount"><b>Benvingut <%=userLogin%>! </b></a><font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="controller.do?form_action=logout"><b>Tancar sessió</b></a>
+                        
+                        <%}else{%>
+                        
+                        <a class="text_arial_href" href="login.jsp"><b>Iniciar Sessió </b></a> <font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="register.jsp"><b>Registrar-se</b></a>
+                        
+                        <%}%>
                     </td>
                 </tr>
             </table>
@@ -27,10 +42,12 @@
         </div>
         <br>
         <br>
-            <table>
+            <table class="totample">
                 <tr>
-                    <td class="borde_gris"><font class="text_arial_blanc">
-                    <jsp:getProperty name="user" property="regconfirmat" />
+                    <td class="borde_gris"><font class="text_arial_blanc"><img src="css/tick_verde.jpg" alt="Smiley face" height="170px" width="170px" align="right">
+                        <jsp:getProperty name="user" property="regconfirmat" /><br>
+                        Benvingut a SafeTravel, esperem que tingui unes vacances espectaculars i qualsevol cosa
+                        <br>no dubti en contacar amb dubtes@safetravel.com.
                     </font></td>
                 </tr>
             </table>

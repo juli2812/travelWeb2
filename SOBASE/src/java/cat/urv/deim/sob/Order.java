@@ -6,7 +6,7 @@
 package cat.urv.deim.sob;
 
 import java.sql.Time;
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -15,11 +15,23 @@ import java.util.Date;
 public class Order {
 private float total_price;
 private int order_id;
-private Date order_date;
+private Calendar order_date;
 private Time order_time;
 private String offer_id; 
 private int people;
 private String user_id;
+
+    public Order(float total_price, int order_id, Calendar order_date, Time order_time, String offer_id, int people, String user_id) {
+        this.total_price = total_price;
+        this.order_id = order_id;
+        this.order_date = order_date;
+        this.order_time = order_time;
+        this.offer_id = offer_id;
+        this.people = people;
+        this.user_id = user_id;
+    }
+    public Order (){
+    }
 
     public float getTotal_price() {
         return total_price;
@@ -29,7 +41,7 @@ private String user_id;
         return order_id;
     }
 
-    public Date getOrder_date() {
+    public Calendar getOrder_date() {
         return order_date;
     }
 
@@ -57,7 +69,7 @@ private String user_id;
         this.order_id = order_id;
     }
 
-    public void setOrder_date(Date order_date) {
+    public void setOrder_date(Calendar order_date) {
         this.order_date = order_date;
     }
 
