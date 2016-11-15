@@ -70,13 +70,14 @@
                                 </td>
                             </tr>
                             <tr>
-                                <%if(userLogin!=null){%><input type="hidden" name="form_action" value="reservar"/>
+                                <%if(userLogin!=null){%>
+                            <input type="hidden" name="form_action" value="reservar"/>
                                 <%session.setAttribute("preuPers", oferta.getPrice_pperson());%>
                                 <%session.setAttribute("placesDisp", oferta.getAvailable_sits());%>
                                 <%session.setAttribute("idOferta", oferta.getOffer_id());%>
                                 <%}else{%>
                                 <input type="hidden" name="form_action" value="login"/>
-                                <input type="hidden" name="oferta_id" value="<%=oferta.getOffer_id()%>"/>
+                                <%session.setAttribute("idOferta", oferta.getOffer_id());%>
                                 <%}%>
                                 <td class="contingut_centre"><input class="text_arial" id="buttonEnter" type="Submit" value="Reservar"></td>         
                                 

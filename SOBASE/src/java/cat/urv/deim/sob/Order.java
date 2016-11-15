@@ -96,6 +96,14 @@ private String user_id;
         String date = sdf.format(data);
         return "<b>#"+order_id+"</b> Aquesta comanda ha estat realitzada per un total de "+people+" persones. El preu total és de "+total_price+" euros, reservat amb data "+date+" a les "+getOrder_time().toString()+" la oferta és la núm. "+offer_id;
     }
-
+    public String getComandaReserva() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date data =  getOrder_date().getTime();
+        String date = sdf.format(data);
+        return "<b>Comanda #"+order_id+"</b> reservada.<br>Aquesta comanda ha estat "
+                + "realitzada per un total de "+people+" persones.<br>El preu total "
+                + "és de "+total_price+" euros, reservat amb data "+date+" a les "+getOrder_time().toString()+
+                " la oferta és la núm. "+offer_id;
+    }
   
 }

@@ -59,16 +59,16 @@
                 <tr>
                     <td class="text_esquerra"><b>Contrasenya:</b></td>
                     <td class="text_esquerra">
-                        <input    type="password" size="20" name="pass">
+                        <input type="password" size="20" name="pass" value="">
                     </td>
                 </tr>
                 <tr>
                     <td class="text_esquerra"><b>Nom:</b></td>
                     <td class="text_esquerra">
                         <%if(request.getParameter("first_name")!=null){%>
-                        <input type="text" size="20" name="first_name"  value="<%=request.getParameter("first_name")%>"autofocus/>
+                        <input type="text" size="20" name="first_name"  value="<%=request.getParameter("first_name")%>"/>
                         <%}else{%>
-                        <input type="text" size="20" name="first_name" autofocus/>
+                        <input type="text" size="20" name="first_name"/>
                         <%}%>
                     </td>
                 </tr>
@@ -76,9 +76,9 @@
                     <td class="text_esquerra"><b>Primer cognom:</b></td>
                     <td class="text_esquerra">
                         <%if(request.getParameter("last_name")!=null){%>
-                        <input type="text" size="12" name="last_name"  value="<%=request.getParameter("last_name")%>"autofocus/>
+                        <input type="text" size="12" name="last_name"  value="<%=request.getParameter("last_name")%>"/>
                         <%}else{%>
-                        <input type="text" size="12" name="last_name" autofocus/>
+                        <input type="text" size="12" name="last_name"/>
                         <%}%>
                     </td>
                 </tr>
@@ -86,9 +86,9 @@
                     <td class="text_esquerra"><b>Segon cognom:</b></td>
                     <td class="text_esquerra">
                         <%if(request.getParameter("last_name2")!=null){%>
-                        <input type="text" size="12" name="last_name2"  value="<%=request.getParameter("last_name2")%>"autofocus/>
+                        <input type="text" size="12" name="last_name2"  value="<%=request.getParameter("last_name2")%>"/>
                         <%}else{%>
-                        <input type="text" size="12" name="last_name2" autofocus/>
+                        <input type="text" size="12" name="last_name2"/>
                         <%}%>
                     </td>
                 </tr>
@@ -96,9 +96,9 @@
                     <td class="text_esquerra"><b>Data naixement (AAAA-MM-DD):</b></td>
                     <td class="text_esquerra">
                         <%if(request.getParameter("data_naix")!=null){%>
-                        <input type="text" size="20" name="data_naix"  value="<%=request.getParameter("data_naix")%>"autofocus/>
+                        <input type="text" size="20" name="data_naix"  value="<%=request.getParameter("data_naix")%>"/>
                         <%}else{%>
-                        <input type="text" size="20" name="data_naix" autofocus/>
+                        <input type="text" size="20" name="data_naix"/>
                         <%}%>
                     </td>
                 </tr>
@@ -106,18 +106,18 @@
                     <td class="text_esquerra"><b>Adreça:</b></td>
                     <td class="text_esquerra">
                         <%if(request.getParameter("address")!=null){%>
-                        <input type="text" size="50" name="address"  value="<%=request.getParameter("address")%>"autofocus/>
+                        <input type="text" size="50" name="address"  value="<%=request.getParameter("address")%>"/>
                         <%}else{%>
-                        <input type="text" size="50" name="address" autofocus/>
+                        <input type="text" size="50" name="address"/>
                         <%}%>
                     </td>
                 </tr><tr>
                     <td class="text_esquerra"><b>Telèfon:</b></td>
                     <td class="text_esquerra">
                         <%if(request.getParameter("phone")!=null){%>
-                        <input type="text" size="9" name="phone"  value="<%=request.getParameter("phone")%>"autofocus/>
+                        <input type="text" size="9" name="phone"  value="<%=request.getParameter("phone")%>"/>
                         <%}else{%>
-                        <input type="text" size="9" name="phone" autofocus/>
+                        <input type="text" size="9" name="phone"/>
                         <%}%>
                     </td>
                 </tr>
@@ -125,9 +125,9 @@
                     <td class="text_esquerra"><b>E-mail:</b></td>
                     <td class="text_esquerra">
                         <%if(request.getParameter("email")!=null){%>
-                        <input type="text" size="50" name="email"  value="<%=request.getParameter("email")%>"autofocus/>
+                        <input type="text" size="50" name="email"  value="<%=request.getParameter("email")%>"/>
                         <%}else{%>
-                        <input type="text" size="50" name="email" autofocus/>
+                        <input type="text" size="50" name="email"/>
                         <%}%>
                     </td>
                 </tr>
@@ -155,7 +155,7 @@
                             %>
                             <%
                             if((request.getParameter("codiError")!=null) && request.getParameter("codiError").equals("4")){
-                                 out.println("<br>Camp primer cognom obligatori, limitació de 12 caràcters");
+                                 out.println("<br>Camp primer cognom obligatori, limitació de 12 caràcters.");
                         }
                             %>
                             <%
@@ -175,7 +175,12 @@
                             %>
                             <%
                             if((request.getParameter("codiError")!=null) && request.getParameter("codiError").equals("8")){
-                                 out.println("<br>Camp email obligatori, limitació de 50 caràcters");
+                                 out.println("<br>Camp email obligatori, limitació de 50 caràcters.");
+                        }
+                            %>
+                            <%
+                            if((request.getParameter("codiError")!=null) && request.getParameter("codiError").equals("9")){
+                                 out.println("<br>Camp segon cognom obligatori, limitació de 12 caràcters.");
                         }
                             %>
                     </td>
@@ -188,6 +193,22 @@
                     <td colspan="2" class="contingut_centre"><a class="text_arial_href_blau" href="login.jsp"><b>Ja tinc usuari</b></a></td>
                 </tr>
             </table>
+                    <table>
+                        <tr>
+                            <td><h2>Normes a seguir pel registre:</h2>
+                                <br>Camp usuari obligatori, amb mida de 8 a 10 caràcters.
+                                <br>Camp contrasenya obligatori, amb mida de 8 a 10 caràcters.
+                                <br>Camp nom obligatori, limitació a 20 caràcters.
+                                <br>Camp primer cognom obligatori, limitació de 12 caràcters.
+                                <br>Segon cognom no és obligatori però segueix la mateixa norma.
+                                <br>Camp data naixement obligatori, respecta el format.
+                                <br>Camp adreça obligatoria, limitació de 50 caràcters, utilitza abreviacions.
+                                <br>Camp telèfon si l'introdueixes ha de tenir 9 dígits.
+                                <br>Camp email obligatori, limitació de 50 caràcters.
+                                <br>Moltes gràcies per respectar les normes.
+                            </td>
+                        </tr>
+                    </table>
         </form>
     </body>
 </html>

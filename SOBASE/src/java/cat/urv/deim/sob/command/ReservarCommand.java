@@ -2,6 +2,7 @@ package cat.urv.deim.sob.command;
 
 import cat.urv.deim.dao.DAOofertes;
 import cat.urv.deim.dao.DAOorder;
+import cat.urv.deim.sob.Order;
 import cat.urv.deim.sob.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,6 +38,7 @@ public class ReservarCommand implements Command {
             String userLogin = (String) session.getAttribute("aliasLogin");
             DAOofertes ofertaActualitzar=new DAOofertes();
             DAOorder comanda=new DAOorder();
+            Order order=new Order();
         try {
             int placesAct = placesDisp - placesReserva;
             ofertaActualitzar.modificaOferta(placesAct, idOferta);
@@ -45,13 +47,13 @@ public class ReservarCommand implements Command {
         }
         try {
             float preuTotal = preuPers * placesReserva;
-            comanda.novaComanda(userLogin, idOferta, preuTotal, placesReserva);
+            order = comanda.novaComanda(userLogin, idOferta, preuTotal, placesReserva);
         } catch (SQLException ex) {
             Logger.getLogger(ReservarCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
-           
+                session.setAttribute("comanda", order);
                 ServletContext context = request.getSession().getServletContext();
-                context.getRequestDispatcher("/index.jsp").forward(request, response);
+                context.getRequestDispatcher("/reserva_confirmada.jsp").forward(request, response);
             
     }
 }
