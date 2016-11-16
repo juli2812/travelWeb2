@@ -39,8 +39,10 @@ public class ReservarCommand implements Command {
             DAOofertes ofertaActualitzar=new DAOofertes();
             DAOorder comanda=new DAOorder();
             Order order=new Order();
-        try {
             int placesAct = placesDisp - placesReserva;
+            ServletContext context = request.getSession().getServletContext();
+            if(placesAct>=0){
+        try {
             ofertaActualitzar.modificaOferta(placesAct, idOferta);
         } catch (SQLException ex) {
             Logger.getLogger(ReservarCommand.class.getName()).log(Level.SEVERE, null, ex);
@@ -52,8 +54,7 @@ public class ReservarCommand implements Command {
             Logger.getLogger(ReservarCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
                 session.setAttribute("comanda", order);
-                ServletContext context = request.getSession().getServletContext();
-                context.getRequestDispatcher("/reserva_confirmada.jsp").forward(request, response);
-            
+                context.getRequestDispatcher("/reserva_confirmada.jsp").forward(request, response);}
+            else context.getRequestDispatcher("/oferta.jsp?id_oferta="+idOferta+"&placesReserva="+placesReserva+"&error=true").forward(request, response);
     }
 }

@@ -22,7 +22,7 @@
             ArrayList<Order> listaComandes = (ArrayList<Order>) session.getAttribute("dadesComandes");
             Order comanda = null;
             %>
-        <title>Viajar te da alas</title>
+        <title>SafeTravel</title>
     </head>
     <body>
         <div id="menu_inicial">
@@ -45,8 +45,14 @@
                 </tr>
             </table>
         </div>
-        <div id="menu_inicial2">
+                    <div id="menu_inicial2" >
             <table class="totample">
+                <tr>
+                    <td id="barra_inici2">
+                        <font class="text_arial_blanc"><h2>El meu compte</h2>
+                        </font>
+                    </td>
+                </tr>
             </table>
         </div>
         <br>

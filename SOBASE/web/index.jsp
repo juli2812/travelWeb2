@@ -3,10 +3,12 @@
     Created on : 03-nov-2016, 9:00:04
     Author     : BEC.CA2
 --%>
-<%@page import="cat.urv.deim.sob.Offer"%>
+
 <%@page import="java.util.ArrayList"%>
+<%@page import="cat.urv.deim.sob.Offer"%>
 <%@page import="cat.urv.deim.dao.DAOofertes"%>
-<%@page import="java.util.List"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="css/index.css"/>
@@ -15,8 +17,7 @@
             String userLogin = (String) session.getAttribute("aliasLogin");
             DAOofertes listaOfertes = new DAOofertes();
         %>
-        <title>Viajar te da alas</title>
-    </head>
+        <title>SafeTravel</title>
     </head>
     <body>
         <div id="menu_inicial">
@@ -28,11 +29,11 @@
                     <td id="barra_inici">
                         <%if(userLogin!=null){%>
                         
-                        <a class="text_arial_href" href="controller.do?form_action=infoaccount"><b>Benvingut <%=userLogin%>! </b></a><font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="controller.do?form_action=logout"><b>Tancar sessió</b></a>
+                        <a class="text_arial_href" href="controller.do?form_action=infoaccount"><b>Benvingut <%=userLogin%>! </b></a><font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="controller.do?form_action=logout"><b>Tancar sessiÃ³</b></a>
                         
                         <%}else{%>
                         
-                        <a class="text_arial_href" href="login.jsp"><b>Iniciar Sessió </b></a> <font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="register.jsp"><b>Registrar-se</b></a>
+                        <a class="text_arial_href" href="login.jsp"><b>Iniciar SessiÃ³ </b></a> <font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="register.jsp"><b>Registrar-se</b></a>
                         
                         <%}%>
                     </td>
@@ -43,17 +44,13 @@
             <table class="totample">
                 <tr>
                     <td id="barra_inici2">
-                        <font class="text_arial_blanc">Escull continent:
+                        <font class="text_arial_blanc"><h2>Llistat d'ofertes</h2>
                         </font>
                     </td>
                 </tr>
             </table>
         </div>
-        <font class="text_arial" align="center">
-        <h1>Viajar te da alas</h1>
-        </font>
-        
-        <br>
+                    <br>
         <% Offer oferta;
         ArrayList<Offer> ofertes = listaOfertes.getOfertes();
         oferta=ofertes.get(0);
@@ -67,7 +64,7 @@
                         </a>
                         <%}else{%>
                         <img src="css/<%=oferta.getDestination()%>.jpg" alt="Smiley face" height="480px" width="640px" align="left">
-                        <b>NO DISPONIBLE, Places esgotades</b><br>
+                        <font class="no_disp"><b>NO DISPONIBLE, Places esgotades</b><br></font>
                         <%}%>
                         <font class="text_arial_blanc">
                         <b><%=oferta.getOffer_title() %></b><br><br>
@@ -76,8 +73,8 @@
                         Dia tornada: <br>
                         Places lliures: <%=oferta.getAvailable_sits() %><br>
                         Preu per persona: <%=oferta.getPrice_pperson() %> euros <br>
-                        Destinació: <%=oferta.getDestination() %><br>
-                        Descripció: <%=oferta.getDescription() %><br></font></td>
+                        DestinaciÃ³: <%=oferta.getDestination() %><br>
+                        DescripciÃ³: <%=oferta.getDescription() %><br></font></td>
                 </tr>
                         <%int tamany=ofertes.size();
                         int i=1;%>
@@ -89,7 +86,7 @@
                                 </a>
                                 <%}else{%>
                                 <img src="css/<%=oferta.getDestination()%>.jpg" alt="Smiley face" height="240px" width="240px" align="left">
-                                <b>NO DISPONIBLE, Places esgotades</b><br>
+                                <font class="no_disp"><b>NO DISPONIBLE, Places esgotades</b><br></font>
                                 <%}%>
                                 <font class="text_arial_blanc">
                         <b><%=oferta.getOffer_title() %></b><br>
@@ -98,8 +95,8 @@
                         Dia tornada: <br>
                         Places lliures: <%=oferta.getAvailable_sits() %><br>
                         Preu per persona: <%=oferta.getPrice_pperson() %> euros <br>
-                        Destinació: <%=oferta.getDestination() %><br>
-                        Descripció: <%=oferta.getDescription() %><br>
+                        DestinaciÃ³: <%=oferta.getDestination() %><br>
+                        DescripciÃ³: <%=oferta.getDescription() %><br>
                         </font>
                             </td>
                             <%if(i==tamany-1){%>
@@ -113,7 +110,7 @@
                             </a>
                             <%}else{%>
                             <img src="css/<%=oferta.getDestination()%>.jpg" alt="Smiley face" height="240px" width="240px" align="left">
-                            <b>NO DISPONIBLE, Places esgotades</b><br>
+                            <font class="no_disp"><b>NO DISPONIBLE, Places esgotades</b><br></font>
                             <%}%>
                             <font class="text_arial_blanc">
                         <b><%=oferta.getOffer_title() %></b><br>
@@ -122,8 +119,8 @@
                         Dia tornada: <br>
                         Places lliures: <%=oferta.getAvailable_sits() %><br>
                         Preu per persona: <%=oferta.getPrice_pperson() %> euros <br>
-                        Destinació: <%=oferta.getDestination() %><br>
-                        Descripció: <%=oferta.getDescription() %><br>
+                        DestinaciÃ³: <%=oferta.getDestination() %><br>
+                        DescripciÃ³: <%=oferta.getDescription() %><br>
                         </font>
                         </td>
             </tr>

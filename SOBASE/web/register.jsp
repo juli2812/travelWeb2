@@ -15,7 +15,7 @@
         <%
             String userLogin = (String) session.getAttribute("aliasLogin");
         %>
-        <title>Viajar te da alas</title>
+        <title>SafeTravel</title>
     </head>
     <body>
         <div id="menu_inicial">
@@ -40,9 +40,15 @@
         </div>
         <div id="menu_inicial2" >
             <table class="totample">
+                <tr>
+                    <td id="barra_inici2">
+                        <font class="text_arial_blanc"><h2>Registrar-se</h2>
+                        </font>
+                    </td>
+                </tr>
             </table>
         </div>
-        <font class="text_arial"><h1>Registrar-se</h1><font>
+                    <br><br>
         <form action="controller.do" method="post">
         <input type="hidden" name="form_action" value="register"/>
             <table id="taula_login">
@@ -196,7 +202,7 @@
                     <table>
                         <tr>
                             <td><h2>Normes a seguir pel registre:</h2>
-                                <br>Camp usuari obligatori, amb mida de 8 a 10 caràcters.
+                                Camp usuari obligatori, amb mida de 8 a 10 caràcters.
                                 <br>Camp contrasenya obligatori, amb mida de 8 a 10 caràcters.
                                 <br>Camp nom obligatori, limitació a 20 caràcters.
                                 <br>Camp primer cognom obligatori, limitació de 12 caràcters.

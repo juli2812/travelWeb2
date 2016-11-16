@@ -11,7 +11,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -23,6 +22,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -98,7 +98,7 @@ public class RegisterCommand implements Command{
             String sentenciaSQL = "INSERT INTO demodb.usuari(alias,contrasenya,nom,cognom1,cognom2,adreça,telefon,email,data_naix) VALUES (?,?,?,?,?,?,?,?,?)";
             ps = con.prepareStatement(sentenciaSQL);
                     ps.setString(1, request.getParameter("alias"));
-                    ps.setString(2, request.getParameter("pass"));
+                    ps.setString(2, DigestUtils.sha1Hex(request.getParameter("pass")));
                     ps.setString(3, request.getParameter("first_name"));
                     ps.setString(4, request.getParameter("last_name"));
                     ps.setString(5, request.getParameter("last_name2"));

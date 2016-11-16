@@ -17,8 +17,11 @@
             int id_oferta = Integer.parseInt(request.getParameter("id_oferta"));
             DAOofertes d_offer= new DAOofertes();
             Offer oferta = d_offer.getOferta(id_oferta);
+            int placesRes=0;
+            if(null!=request.getParameter("placesReserva")&&!("").equals(request.getParameter("placesReserva"))){
+            placesRes=Integer.parseInt(request.getParameter("placesReserva"));}
         %>
-        <title>Viajar te da alas</title>
+        <title>SafeTravel</title>
     </head>
     <body>
         <div id="menu_inicial">
@@ -34,18 +37,24 @@
                         
                         <%}else{%>
                         
-                        <a class="text_arial_href" href="login.jsp"><b>Iniciar Sessió </b></a> <font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="register.jsp"><b>Registrar-se</b></a>
+                        <a class="text_arial_href" href="login.jsp?idOferta=<%=oferta.getOffer_id()%>"><b>Iniciar Sessió </b></a> <font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="register.jsp"><b>Registrar-se</b></a>
                         
                         <%}%>
                     </td>
                 </tr>
             </table>
         </div>
-        <div id="menu_inicial2">
+        <div id="menu_inicial2" >
             <table class="totample">
+                <tr>
+                    <td id="barra_inici2">
+                        <font class="text_arial_blanc"><h2>Oferta</h2>
+                        </font>
+                    </td>
+                </tr>
             </table>
         </div>
-        <br>
+                    
         <br>
             <table class="totample">
                 <tr>
@@ -62,11 +71,13 @@
                     <form name="updateAccount" action="controller.do" method="post">
                         <table id="taula_login">
                             <tr>
-                                <td class="text_esquerra"><b>Places a reservar:</b></td>
-                                <td class="content_dreta">
-                                    <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
-                                    associated with the onkeyup event -->
+                                <td class="text_esquerra"><br><b>Places a reservar:</b></td>
+                                <td class="content_dreta"><br>
+                                    <%if(placesRes!=0){%>
+                                    <input type="text" size="3" name="placesReserva" value=<%=placesRes%> autofocus/>
+                                    <%}else{%>
                                     <input type="text" size="3" name="placesReserva" autofocus/>
+                                    <%}%>
                                 </td>
                             </tr>
                             <tr>
@@ -76,12 +87,23 @@
                                 <%session.setAttribute("placesDisp", oferta.getAvailable_sits());%>
                                 <%session.setAttribute("idOferta", oferta.getOffer_id());%>
                                 <%}else{%>
-                                <input type="hidden" name="form_action" value="login"/>
-                                <%session.setAttribute("idOferta", oferta.getOffer_id());%>
+                                <input type="hidden" name="form_action" value="offertologin"/>
+                                <input type="hidden" name="idOferta" value="<%=oferta.getOffer_id()%>"/>
                                 <%}%>
+                                <%if(userLogin!=null){%>
                                 <td class="contingut_centre"><input class="text_arial" id="buttonEnter" type="Submit" value="Reservar"></td>         
-                                
+                                <%}else{%>
+                                <td class="contingut_centre"><input class="text_arial" id="buttonEnter" type="Submit" value="Login"></td>         
+                                <%}%>
                             </tr>
+                            <tr><td colspan="2">
+                                    <font class="error">
+                                        
+                                    <%
+                                        if(null!=request.getParameter("error")&&("true").equals(request.getParameter("error"))){
+                                        out.println("<br><b>Error, no hi ha tantes places disponibles.</b>");}
+                            %>
+                                    </font></td></tr>
                         </table>
                     </form></font></td>
                 </tr>

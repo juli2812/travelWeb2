@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -49,7 +50,7 @@ public class DAOuser {
             String query = "SELECT * FROM demodb.usuari WHERE alias=? AND contrasenya=?";
             ps = con.prepareStatement(query);
                     ps.setString(1, alias);
-                    ps.setString(2, pass);
+                    ps.setString(2, DigestUtils.sha1Hex(pass));
             
             ResultSet resultSet=ps.executeQuery();
             if (resultSet.next()) {

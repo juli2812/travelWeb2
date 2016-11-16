@@ -21,7 +21,7 @@
             String userLogin = (String) session.getAttribute("aliasLogin");
             Order comanda = (Order) session.getAttribute("comanda");
             %>
-        <title>Viajar te da alas</title>
+        <title>SafeTravel</title>
     </head>
     <body>
         <div id="menu_inicial">
@@ -44,10 +44,17 @@
                 </tr>
             </table>
         </div>
-        <div id="menu_inicial2">
+        <div id="menu_inicial2" >
             <table class="totample">
+                <tr>
+                    <td id="barra_inici2">
+                        <font class="text_arial_blanc"><h2>Reserva confirmada</h2>
+                        </font>
+                    </td>
+                </tr>
             </table>
         </div>
+        
         <br>
         <br>
             <table>

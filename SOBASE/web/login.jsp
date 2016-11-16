@@ -6,8 +6,14 @@
         <%@ page session="true" %>
         <%
             String userLogin = (String) session.getAttribute("aliasLogin");
+            int idOferta2=0;
+            if(null!=request.getParameter("idOferta")&&!("").equals(request.getParameter("idOferta"))){
+            idOferta2=Integer.parseInt(request.getParameter("idOferta"));}
+            int placesRes2=0;
+            if(null!=request.getParameter("placesReserva")&&!("").equals(request.getParameter("placesReserva"))){
+            placesRes2=Integer.parseInt(request.getParameter("placesReserva"));}
         %>
-        <title>Viajar te da alas</title>
+        <title>SafeTravel</title>
     </head>
     <body>
         
@@ -33,25 +39,33 @@
         </div>
         <div id="menu_inicial2" >
             <table class="totample">
+                <tr>
+                    <td id="barra_inici2">
+                        <font class="text_arial_blanc"><h2>Iniciar sessió</h2>
+                        </font>
+                    </td>
+                </tr>
             </table>
         </div>
-        <font class="text_arial"><h1>Iniciar sessió</h1><font>
+                    <br><br>
         <form method="post" action="controller.do"> 
+        <%if(!("").equals(request.getParameter("idOferta"))&&idOferta2!=0){%>
+        <input type="hidden" name="idOferta3" value="<%=idOferta2%>"/>
+        <input type="hidden" name="placesRes3" value="<%=placesRes2%>"/>
+        <input type="hidden" name="form_action" value="logintooffer"/>
+        <%}else{%>
         <input type="hidden" name="form_action" value="login"/>
+        <%}%>
             <table id="taula_login">
                 <tr>
                     <td class="text_esquerra"><b>Usuari:</b></td>
                     <td class="content_dreta">
-                        <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
-                        associated with the onkeyup event -->
                         <input type="text" size="20" name="alias" autofocus/>
                     </td>
                 </tr>
                 <tr>
                     <td class="text_esquerra"><b>Contrasenya:</b></td>
                     <td class="content_dreta">
-                        <!-- Input form field whose id is set as "userid" and "validateUserId()" function is
-                        associated with the onkeyup event -->
                         <input    type="password" size="20" name="pass">
                     </td>
                 </tr>
