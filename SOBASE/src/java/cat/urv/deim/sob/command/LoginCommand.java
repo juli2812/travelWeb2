@@ -42,13 +42,16 @@ public class LoginCommand implements Command{
             a = n.getLogin(alias, pass);
         } catch (SQLException ex) {
             Logger.getLogger(LoginCommand.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
+        ServletContext context = request.getSession().getServletContext();
+        if((alias!=null)&&(!("").equals(alias))){
             if (a.equals(alias)) {     //if is correct go to main
                 session.setAttribute("aliasLogin", a);
-                ServletContext context = request.getSession().getServletContext();
                 context.getRequestDispatcher("/index.jsp").forward(request, response);
             }
-            else{ServletContext context = request.getSession().getServletContext();
+            else{
                 context.getRequestDispatcher("/login.jsp?dadesErronees=true").forward(request, response);}
+    }else context.getRequestDispatcher("/login.jsp?dadesErronees=true").forward(request, response);
     }
 }

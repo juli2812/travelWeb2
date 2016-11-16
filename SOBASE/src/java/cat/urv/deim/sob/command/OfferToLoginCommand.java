@@ -28,7 +28,9 @@ public class OfferToLoginCommand implements Command{
             // 1. process the request
                 ServletContext context = request.getSession().getServletContext();
                 int idOfertaint=Integer.parseInt(idOferta);
-                int placesReservaint=Integer.parseInt(placesReserva);
-                context.getRequestDispatcher("/login.jsp?idOferta="+idOfertaint+"&placesReserva="+placesReserva).forward(request, response);
+                int placesReservaint=0;
+                if(placesReserva!=null&&!("").equals(placesReserva)){
+                placesReservaint=Integer.parseInt(placesReserva);}
+                context.getRequestDispatcher("/login.jsp?idOferta="+idOfertaint+"&placesReserva="+placesReservaint).forward(request, response);
     }
 }

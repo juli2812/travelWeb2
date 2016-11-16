@@ -90,6 +90,7 @@
                                 <input type="hidden" name="form_action" value="offertologin"/>
                                 <input type="hidden" name="idOferta" value="<%=oferta.getOffer_id()%>"/>
                                 <%}%>
+                                <td><button onclick="history.back()">Enrere</button></td>
                                 <%if(userLogin!=null){%>
                                 <td class="contingut_centre"><input class="text_arial" id="buttonEnter" type="Submit" value="Reservar"></td>         
                                 <%}else{%>

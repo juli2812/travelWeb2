@@ -71,6 +71,11 @@
                     <%=comanda.getComandaInfo()%><br><%}%></font>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <button onclick="history.back()">Enrere</button>
+                    </td>
+                <tr>
             </table>
     </body>
 </html>
