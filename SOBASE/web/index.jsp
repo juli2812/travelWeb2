@@ -67,14 +67,14 @@
                         <font class="no_disp"><b>NO DISPONIBLE, Places esgotades</b><br></font>
                         <%}%>
                         <font class="text_arial_blanc">
-                        <b><%=oferta.getOffer_title() %></b><br><br>
-                        Dies d'estada <%=oferta.getStay_days() %><br>
-                        Dia sortida: <%=oferta.getDeparture_dateString() %><br>
-                        Dia tornada: <%=oferta.getArrival_dateString() %><br>
-                        Places lliures: <%=oferta.getAvailable_sits() %><br>
-                        Preu per persona: <%=oferta.getPrice_pperson() %> euros <br>
-                        Destinació: <%=oferta.getDestination() %><br>
-                        Descripció: <%=oferta.getDescription() %><br></font></td>
+                        <a  href="oferta.jsp?id_oferta=<%=oferta.getOffer_id()%>"><font class="text_arial_href"><b><%=oferta.getOffer_title() %></b></font></a><br><br>
+                        <b>Dies d'estada: </b><%=oferta.getStay_days() %><br>
+                        <b>Dia sortida: </b><%=oferta.getDeparture_dateString() %><br>
+                        <b>Dia tornada: </b><%=oferta.getArrival_dateString() %><br>
+                        <b>Places lliures: </b><%=oferta.getAvailable_sits() %><br>
+                        <b>Preu per persona: </b><%=oferta.getPrice_pperson() %> euros <br>
+                        <b>Destinació: </b><%=oferta.getDestination() %><br>
+                        <b>Descripció: </b><%=oferta.getDescription() %><br></font></td>
                 </tr>
                         <%int tamany=ofertes.size();
                         int i=1;%>
@@ -89,14 +89,14 @@
                                 <font class="no_disp"><b>NO DISPONIBLE, Places esgotades</b><br></font>
                                 <%}%>
                                 <font class="text_arial_blanc">
-                        <b><%=oferta.getOffer_title() %></b><br>
-                        Dies d'estada <%=oferta.getStay_days() %><br>
-                        Dia sortida: <%=oferta.getDeparture_dateString() %><br>
-                        Dia tornada: <%=oferta.getArrival_dateString() %><br>
-                        Places lliures: <%=oferta.getAvailable_sits() %><br>
-                        Preu per persona: <%=oferta.getPrice_pperson() %> euros <br>
-                        Destinació: <%=oferta.getDestination() %><br>
-                        Descripció: <%=oferta.getDescription() %><br>
+                                <a  href="oferta.jsp?id_oferta=<%=oferta.getOffer_id()%>"><font class="text_arial_href"><b><%=oferta.getOffer_title() %></b></font></a><br>
+                        <b>Dies d'estada: </b><%=oferta.getStay_days() %><br>
+                        <b>Dia sortida: </b><%=oferta.getDeparture_dateString() %><br>
+                        <b>Dia tornada: </b><%=oferta.getArrival_dateString() %><br>
+                        <b>Places lliures: </b><%=oferta.getAvailable_sits() %><br>
+                        <b>Preu per persona: </b><%=oferta.getPrice_pperson() %> euros <br>
+                        <b>Destinació: </b><%=oferta.getDestination() %><br>
+                        <b>Descripció: </b><%=oferta.getDescription() %><br>
                         </font>
                             </td>
                             <%if(i==tamany-1){%>
@@ -113,14 +113,14 @@
                             <font class="no_disp"><b>NO DISPONIBLE, Places esgotades</b><br></font>
                             <%}%>
                             <font class="text_arial_blanc">
-                        <b><%=oferta.getOffer_title() %></b><br>
-                        Dies d'estada <%=oferta.getStay_days() %><br>
-                        Dia sortida: <%=oferta.getDeparture_dateString() %><br>
-                        Dia tornada: <%=oferta.getArrival_dateString() %><br>
-                        Places lliures: <%=oferta.getAvailable_sits() %><br>
-                        Preu per persona: <%=oferta.getPrice_pperson() %> euros <br>
-                        Destinació: <%=oferta.getDestination() %><br>
-                        Descripció: <%=oferta.getDescription() %><br>
+                            <a  href="oferta.jsp?id_oferta=<%=oferta.getOffer_id()%>"><font class="text_arial_href"><b><%=oferta.getOffer_title() %></b></font></a><br>
+                        <b>Dies d'estada: </b><%=oferta.getStay_days() %><br>
+                        <b>Dia sortida: </b><%=oferta.getDeparture_dateString() %><br>
+                        <b>Dia tornada: </b><%=oferta.getArrival_dateString() %><br>
+                        <b>Places lliures: </b><%=oferta.getAvailable_sits() %><br>
+                        <b>Preu per persona: </b><%=oferta.getPrice_pperson() %> euros <br>
+                        <b>Destinació: </b><%=oferta.getDestination() %><br>
+                        <b>Descripció: </b><%=oferta.getDescription() %><br>
                         </font>
                         </td>
             </tr>

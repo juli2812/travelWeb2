@@ -47,7 +47,7 @@ public class ReservarCommand implements Command {
             int placesAct = placesDisp - placesReserva;
             ServletContext context = request.getSession().getServletContext();
             if(first.equals("1")){
-            if(placesAct>=0){
+            if(placesAct>=0&&placesReserva!=0){
         try {
             ofertaActualitzar.modificaOferta(placesAct, idOferta);
         } catch (SQLException ex) {

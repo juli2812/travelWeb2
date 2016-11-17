@@ -62,8 +62,8 @@
                     <td class="borde_gris"><font class="text_arial_blanc">
                     <h2><%=oferta.getOffer_title() %></h2>
                     <b>Dies d'estada: </b><%=oferta.getStay_days() %><br>
-                    <b>Dia sortida: </b><%=oferta.getDeparture_date()%><br>
-                    <b>Dia tornada: </b><%=oferta.getArrival_date()%><br>
+                    <b>Dia sortida: </b><%=oferta.getDeparture_dateString() %><br>
+                    <b>Dia tornada: </b><%=oferta.getArrival_dateString() %><br>
                     <b>Places lliures: </b><%=oferta.getAvailable_sits() %><br>
                     <b>Preu per persona: </b><%=oferta.getPrice_pperson() %> euros <br>
                     <b>Destinació: </b><%=oferta.getDestination() %><br>
@@ -104,7 +104,7 @@
                                         
                                     <%
                                         if(null!=request.getParameter("error")&&("true").equals(request.getParameter("error"))){
-                                        out.println("<br><b>Error, no hi ha tantes places disponibles.</b>");}
+                                        out.println("<br><b>Error, no hi ha tantes places disponibles o has indroduït 0.</b>");}
                             %>
                                     </font></td></tr>
                         </table>

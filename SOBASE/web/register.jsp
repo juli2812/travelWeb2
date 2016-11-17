@@ -53,7 +53,7 @@
         <input type="hidden" name="form_action" value="register" accept-charset="UTF-8"/>
         <table id="taula_login">
                 <tr>
-                    <td class="text_esquerra"><b>Usuari:</b></td>
+                    <td class="text_esquerra"><b>Usuari*:</b></td>
                     <td class="text_esquerra">
                         <%if(request.getParameter("alias")!=null){%>
                         <input type="text" size="20" name="alias"  value="<%=request.getParameter("alias")%>"autofocus/>
@@ -63,13 +63,13 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="text_esquerra"><b>Contrasenya:</b></td>
+                    <td class="text_esquerra"><b>Contrasenya*:</b></td>
                     <td class="text_esquerra">
                         <input type="password" size="20" name="pass" value="">
                     </td>
                 </tr>
                 <tr>
-                    <td class="text_esquerra"><b>Nom:</b></td>
+                    <td class="text_esquerra"><b>Nom*:</b></td>
                     <td class="text_esquerra">
                         <%if(request.getParameter("first_name")!=null){%>
                         <input type="text" size="20" name="first_name"  value="<%=request.getParameter("first_name")%>"/>
@@ -79,7 +79,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="text_esquerra"><b>Primer cognom:</b></td>
+                    <td class="text_esquerra"><b>Primer cognom*:</b></td>
                     <td class="text_esquerra">
                         <%if(request.getParameter("last_name")!=null){%>
                         <input type="text" size="12" name="last_name"  value="<%=request.getParameter("last_name")%>"/>
@@ -99,7 +99,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="text_esquerra"><b>Data naixement (AAAA-MM-DD):</b></td>
+                    <td class="text_esquerra"><b>Data naixement (AAAA-MM-DD)*:</b></td>
                     <td class="text_esquerra">
                         <%if(request.getParameter("data_naix")!=null){%>
                         <input type="text" size="20" name="data_naix"  value="<%=request.getParameter("data_naix")%>"/>
@@ -109,11 +109,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="text_esquerra"><b>Sexe: </b></td>
+                    <td class="text_esquerra"><b>Sexe*: </b></td>
                     <td><input type="radio" name="sexe" value="Home" checked>HOME<input type="radio" name="sexe" value="Dona">DONA</td>
                 </tr>
                 <tr>
-                    <td class="text_esquerra"><b>Adreça:</b></td>
+                    <td class="text_esquerra"><b>Adreça*:</b></td>
                     <td class="text_esquerra">
                         <%if(request.getParameter("address")!=null){%>
                         <input type="text" size="50" name="address"  value="<%=request.getParameter("address")%>"/>
@@ -132,7 +132,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="text_esquerra"><b>E-mail:</b></td>
+                    <td class="text_esquerra"><b>E-mail*:</b></td>
                     <td class="text_esquerra">
                         <%if(request.getParameter("email")!=null){%>
                         <input type="text" size="50" name="email"  value="<%=request.getParameter("email")%>"/>
