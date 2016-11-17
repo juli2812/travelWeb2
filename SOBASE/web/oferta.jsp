@@ -11,6 +11,7 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="css/index.css"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@ page session="true" %>
         <%
             String userLogin = (String) session.getAttribute("aliasLogin");
@@ -74,9 +75,9 @@
                                 <td class="text_esquerra"><br><b>Places a reservar:</b></td>
                                 <td class="content_dreta"><br>
                                     <%if(placesRes!=0){%>
-                                    <input type="text" size="3" name="placesReserva" value=<%=placesRes%> autofocus/>
+                                    <input type="number" size="3" name="placesReserva" min="1" value=<%=placesRes%> autofocus/>
                                     <%}else{%>
-                                    <input type="text" size="3" name="placesReserva" autofocus/>
+                                    <input type="number" size="3" name="placesReserva" min="1" autofocus/>
                                     <%}%>
                                 </td>
                             </tr>

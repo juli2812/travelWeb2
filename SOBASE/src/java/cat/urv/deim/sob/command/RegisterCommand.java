@@ -50,11 +50,11 @@ public class RegisterCommand implements Command{
                 codiError=2;
                 totCorrecte=false;
             }
-            if((request.getParameter("first_name").equals("")||(request.getParameter("first_name").length()>20))&&codiError==0){
+            if((request.getParameter("first_name").equals(""))&&codiError==0){
                 codiError=3;
                 totCorrecte=false;
             }
-            if((request.getParameter("last_name").equals("")||(request.getParameter("last_name").length()>12))&&codiError==0){
+            if((request.getParameter("last_name").equals(""))&&codiError==0){
                 codiError=4;
                 totCorrecte=false;
             }

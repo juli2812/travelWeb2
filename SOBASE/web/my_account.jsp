@@ -14,6 +14,7 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="css/index.css"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@ page session="true" %>
         <%
             String userLogin = (String) session.getAttribute("aliasLogin");

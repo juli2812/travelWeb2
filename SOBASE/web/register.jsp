@@ -9,6 +9,7 @@
 <jsp:useBean id="user" class="cat.urv.deim.sob.User" scope="request" />
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/index.css"/>
         <link rel="stylesheet" type="text/css" href="css/login.css"/>
         <%@ page session="true" %>
@@ -99,12 +100,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="text_esquerra"><b>Data naixement (AAAA-MM-DD)*:</b></td>
+                    <td class="text_esquerra"><b>Data naixement*:</b></td>
                     <td class="text_esquerra">
                         <%if(request.getParameter("data_naix")!=null){%>
-                        <input type="text" size="20" name="data_naix"  value="<%=request.getParameter("data_naix")%>"/>
+                        <input type="date" size="20" name="data_naix"  value="<%=request.getParameter("data_naix")%>"/>
                         <%}else{%>
-                        <input type="text" size="20" name="data_naix"/>
+                        <input type="date" size="20" name="data_naix"/>
                         <%}%>
                     </td>
                 </tr>
@@ -135,9 +136,9 @@
                     <td class="text_esquerra"><b>E-mail*:</b></td>
                     <td class="text_esquerra">
                         <%if(request.getParameter("email")!=null){%>
-                        <input type="text" size="50" name="email"  value="<%=request.getParameter("email")%>"/>
+                        <input type="email" name="email"  value="<%=request.getParameter("email")%>"/>
                         <%}else{%>
-                        <input type="text" size="50" name="email"/>
+                        <input type="email" name="email">
                         <%}%>
                     </td>
                 </tr>
@@ -208,13 +209,13 @@
                             <td><h2>Normes a seguir pel registre:</h2>
                                 Camp usuari obligatori, amb mida de 8 a 10 caràcters.
                                 <br>Camp contrasenya obligatori, amb mida de 8 a 10 caràcters.
-                                <br>Camp nom obligatori, limitació a 20 caràcters.
-                                <br>Camp primer cognom obligatori, limitació de 12 caràcters.
+                                <br>Camp nom obligatori.
+                                <br>Camp primer cognom obligatori.
                                 <br>Segon cognom no és obligatori però segueix la mateixa norma.
-                                <br>Camp data naixement obligatori, respecta el format.
+                                <br>Camp data naixement obligatori.
                                 <br>Camp adreça obligatoria, limitació de 50 caràcters, utilitza abreviacions.
                                 <br>Camp telèfon si l'introdueixes ha de tenir 9 dígits.
-                                <br>Camp email obligatori, limitació de 50 caràcters.
+                                <br>Camp email obligatori.
                                 <br>Moltes gràcies per respectar les normes.
                             </td>
                         </tr>
