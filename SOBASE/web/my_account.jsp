@@ -59,7 +59,7 @@
         <br>
             <table>
                 <tr>
-                    <td class="borde_gris"><img src="css/usuari.jpg" alt="Smiley face" height="120px" width="120px"></td>
+                    <td class="borde_gris"><img src="images/usuari.jpg" alt="Smiley face" height="120px" width="120px"></td>
                     <td class="borde_gris"><font class="text_arial_blanc">
                     <h2>Dades usuari</h2><br>
                     <%=usuari.getInfoaccount()%></font>

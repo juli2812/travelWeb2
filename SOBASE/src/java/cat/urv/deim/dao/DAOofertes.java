@@ -11,14 +11,18 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
  * @author BEC.CA2
  */
 public class DAOofertes {
-    public ArrayList<Offer> getOfertes() throws SQLException {
+    public ArrayList<Offer> getOfertes() throws SQLException, ParseException {
         ArrayList<Offer> ofertes = new ArrayList<>();
             Connection con;
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
@@ -27,14 +31,23 @@ public class DAOofertes {
             PreparedStatement ps = con.prepareStatement(query);
             Offer oferta;
             ResultSet resultSet = ps.executeQuery();
+            SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-MM-dd");
+            Date dateObj, dateObj2;
+            Calendar calendar, calendar2;
             while (resultSet.next()) {
-                oferta=new Offer(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getInt(4),resultSet.getFloat(5),resultSet.getString(6),resultSet.getInt(9));
+                dateObj = curFormater.parse(resultSet.getString(7));
+                dateObj2 = curFormater.parse(resultSet.getString(8)); 
+                calendar = Calendar.getInstance();
+                calendar2 = Calendar.getInstance();
+                calendar.setTime(dateObj);
+                calendar2.setTime(dateObj2);
+                oferta=new Offer(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getInt(4),resultSet.getFloat(5),resultSet.getString(6),resultSet.getInt(9),calendar,calendar2);
                 ofertes.add(oferta);
         }
         return ofertes;
     }
     
-    public Offer getOferta(int id_oferta) throws SQLException {
+    public Offer getOferta(int id_oferta) throws SQLException, ParseException {
         Offer oferta = null;
             Connection con;
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
@@ -43,8 +56,17 @@ public class DAOofertes {
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1, id_oferta);
             ResultSet resultSet = ps.executeQuery();
+            SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-MM-dd");
+            Date dateObj, dateObj2;
+            Calendar calendar, calendar2;
             if (resultSet.next()) {
-                oferta=new Offer(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getInt(4),resultSet.getFloat(5),resultSet.getString(6),resultSet.getInt(9));
+                dateObj = curFormater.parse(resultSet.getString(7));
+                dateObj2 = curFormater.parse(resultSet.getString(8)); 
+                calendar = Calendar.getInstance();
+                calendar2 = Calendar.getInstance();
+                calendar.setTime(dateObj);
+                calendar2.setTime(dateObj2);
+                oferta=new Offer(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getInt(4),resultSet.getFloat(5),resultSet.getString(6),resultSet.getInt(9),calendar,calendar2);
         }
         return oferta;
     }

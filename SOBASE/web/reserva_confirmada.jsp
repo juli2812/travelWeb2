@@ -53,7 +53,7 @@
         <br>
             <table>
                 <tr>
-                    <td class="borde_gris"><img src="css/reserva.jpg" alt="Smiley face" height="240px" width="400px"></td>
+                    <td class="borde_gris"><img src="images/reserva.jpg" alt="Smiley face" height="240px" width="400px"></td>
                     <td class="borde_gris"><font class="text_arial_blanc">
                     <h2>Reserva confirmada</h2>
                     <br><%=comanda.getComandaReserva()%>

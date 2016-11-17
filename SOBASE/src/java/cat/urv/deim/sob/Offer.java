@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package cat.urv.deim.sob;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -19,11 +21,11 @@ private String description;
 private int available_sits;
 private float price_pperson;
 private String destination;
-private Date departure_date;
-private Date arrival_date; //comprobar que es igual a departure_date + stay_days
+private Calendar departure_date;
+private Calendar arrival_date; //comprobar que es igual a departure_date + stay_days
 private int stay_days;
 
-    public Offer(int offer_id, String offer_title, String description, int available_sits, float price_pperson, String destination, int stay_days) {
+    public Offer(int offer_id, String offer_title, String description, int available_sits, float price_pperson, String destination, int stay_days,Calendar departure_date,Calendar arrival_date) {
         this.offer_id = offer_id;
         this.offer_title = offer_title;
         this.description = description;
@@ -31,6 +33,8 @@ private int stay_days;
         this.price_pperson = price_pperson;
         this.destination = destination;
         this.stay_days = stay_days;
+        this.departure_date = departure_date;
+        this.arrival_date = arrival_date;
     }
 
 
@@ -59,11 +63,25 @@ private int stay_days;
         return destination;
     }
 
-    public Date getDeparture_date() {
+    public Calendar getDeparture_date() {
         return departure_date;
     }
+    
+    public String getArrival_dateString(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date data =  getArrival_date().getTime();
+        String date = sdf.format(data);
+        return date;
+    }
+    
+    public String getDeparture_dateString(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date data =  getDeparture_date().getTime();
+        String date = sdf.format(data);
+        return date;
+    }
 
-    public Date getArrival_date() {
+    public Calendar getArrival_date() {
         return arrival_date;
     }
 
@@ -95,11 +113,11 @@ private int stay_days;
         this.destination = destination;
     }
 
-    public void setDeparture_date(Date departure_date) {
+    public void setDeparture_date(Calendar departure_date) {
         this.departure_date = departure_date;
     }
 
-    public void setArrival_date(Date arrival_date) {
+    public void setArrival_date(Calendar arrival_date) {
         this.arrival_date = arrival_date;
     }
 

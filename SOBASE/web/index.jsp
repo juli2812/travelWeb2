@@ -60,17 +60,17 @@
                     <td class="borde_gris" colspan="2">
                         <%if(oferta.getAvailable_sits()!=0){%>
                         <a  href="oferta.jsp?id_oferta=<%=oferta.getOffer_id()%>">
-                            <img src="css/<%=oferta.getDestination()%>.jpg" alt="Smiley face" height="480px" width="640px" align="left">
+                            <img src="images/<%=oferta.getDestination()%>.jpg" alt="Smiley face" height="480px" width="640px" align="left">
                         </a>
                         <%}else{%>
-                        <img src="css/<%=oferta.getDestination()%>.jpg" alt="Smiley face" height="480px" width="640px" align="left">
+                        <img src="images/<%=oferta.getDestination()%>.jpg" alt="Smiley face" height="480px" width="640px" align="left">
                         <font class="no_disp"><b>NO DISPONIBLE, Places esgotades</b><br></font>
                         <%}%>
                         <font class="text_arial_blanc">
                         <b><%=oferta.getOffer_title() %></b><br><br>
                         Dies d'estada <%=oferta.getStay_days() %><br>
-                        Dia sortida: <br>
-                        Dia tornada: <br>
+                        Dia sortida: <%=oferta.getDeparture_dateString() %><br>
+                        Dia tornada: <%=oferta.getArrival_dateString() %><br>
                         Places lliures: <%=oferta.getAvailable_sits() %><br>
                         Preu per persona: <%=oferta.getPrice_pperson() %> euros <br>
                         Destinació: <%=oferta.getDestination() %><br>
@@ -82,17 +82,17 @@
                                 <%oferta=ofertes.get(i);%>
                                 <%if(oferta.getAvailable_sits()!=0){%>
                                 <a  href="oferta.jsp?id_oferta=<%=oferta.getOffer_id()%>">
-                                    <img src="css/<%=oferta.getDestination()%>.jpg" alt="Smiley face" height="240px" width="240px" align="left">
+                                    <img src="images/<%=oferta.getDestination()%>.jpg" alt="Smiley face" height="240px" width="240px" align="left">
                                 </a>
                                 <%}else{%>
-                                <img src="css/<%=oferta.getDestination()%>.jpg" alt="Smiley face" height="240px" width="240px" align="left">
+                                <img src="images/<%=oferta.getDestination()%>.jpg" alt="Smiley face" height="240px" width="240px" align="left">
                                 <font class="no_disp"><b>NO DISPONIBLE, Places esgotades</b><br></font>
                                 <%}%>
                                 <font class="text_arial_blanc">
                         <b><%=oferta.getOffer_title() %></b><br>
                         Dies d'estada <%=oferta.getStay_days() %><br>
-                        Dia sortida: <br>
-                        Dia tornada: <br>
+                        Dia sortida: <%=oferta.getDeparture_dateString() %><br>
+                        Dia tornada: <%=oferta.getArrival_dateString() %><br>
                         Places lliures: <%=oferta.getAvailable_sits() %><br>
                         Preu per persona: <%=oferta.getPrice_pperson() %> euros <br>
                         Destinació: <%=oferta.getDestination() %><br>
@@ -106,17 +106,17 @@
                             <%oferta=ofertes.get(i);%>
                             <%if(oferta.getAvailable_sits()!=0){%>
                             <a  href="oferta.jsp?id_oferta=<%=oferta.getOffer_id()%>">
-                                <img src="css/<%=oferta.getDestination()%>.jpg" alt="Smiley face" height="240px" width="240px" align="left">
+                                <img src="images/<%=oferta.getDestination()%>.jpg" alt="Smiley face" height="240px" width="240px" align="left">
                             </a>
                             <%}else{%>
-                            <img src="css/<%=oferta.getDestination()%>.jpg" alt="Smiley face" height="240px" width="240px" align="left">
+                            <img src="images/<%=oferta.getDestination()%>.jpg" alt="Smiley face" height="240px" width="240px" align="left">
                             <font class="no_disp"><b>NO DISPONIBLE, Places esgotades</b><br></font>
                             <%}%>
                             <font class="text_arial_blanc">
                         <b><%=oferta.getOffer_title() %></b><br>
                         Dies d'estada <%=oferta.getStay_days() %><br>
-                        Dia sortida: <br>
-                        Dia tornada: <br>
+                        Dia sortida: <%=oferta.getDeparture_dateString() %><br>
+                        Dia tornada: <%=oferta.getArrival_dateString() %><br>
                         Places lliures: <%=oferta.getAvailable_sits() %><br>
                         Preu per persona: <%=oferta.getPrice_pperson() %> euros <br>
                         Destinació: <%=oferta.getDestination() %><br>

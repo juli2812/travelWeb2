@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletContext;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
@@ -30,6 +31,8 @@ public class ReservarCommand implements Command {
             Offer oferta=oferta_.getOferta(idOferta);
             placesDisp = oferta.getAvailable_sits();
         } catch (SQLException ex) {
+            Logger.getLogger(ReservarCommand.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
             Logger.getLogger(ReservarCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
             String first = (String) session.getAttribute("first");

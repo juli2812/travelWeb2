@@ -58,7 +58,7 @@
         <br>
             <table class="totample">
                 <tr>
-                    <td class="borde_gris"><img src="css/<%=oferta.getDestination()%>.jpg" alt="Smiley face" height="480px" width="640px"></td>
+                    <td class="borde_gris"><img src="images/<%=oferta.getDestination()%>.jpg" alt="Smiley face" height="480px" width="640px"></td>
                     <td class="borde_gris"><font class="text_arial_blanc">
                     <h2><%=oferta.getOffer_title() %></h2>
                     <b>Dies d'estada: </b><%=oferta.getStay_days() %><br>

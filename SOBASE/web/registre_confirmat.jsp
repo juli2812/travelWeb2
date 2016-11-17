@@ -49,7 +49,7 @@
         <br>
             <table class="totample">
                 <tr>
-                    <td class="borde_gris"><font class="text_arial_blanc"><img src="css/tick_verde.jpg" alt="Smiley face" height="170px" width="170px" align="right">
+                    <td class="borde_gris"><font class="text_arial_blanc"><img src="images/tick_verde.jpg" alt="Smiley face" height="170px" width="170px" align="right">
                         <jsp:getProperty name="user" property="regconfirmat"/><br>
                         Benvingut a SafeTravel, esperem que tingui unes vacances espectaculars i qualsevol cosa
                         <br>no dubti en contacar amb dubtes@safetravel.com.
