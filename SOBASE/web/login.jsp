@@ -1,4 +1,11 @@
-<jsp:useBean id="user" class="cat.urv.deim.sob.User" scope="request" />
+<%-- 
+    Document   : login
+    Created on : 03-nov-2016, 12:03:44
+    Author     : BEC.CA2
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="css/index.css"/>
@@ -16,7 +23,6 @@
         <title>SafeTravel</title>
     </head>
     <body>
-        
         <div id="menu_inicial">
             <table class="totample">
                 <tr>
@@ -26,11 +32,11 @@
                     <td id="barra_inici">
                         <%if(userLogin!=null){%>
                         
-                        <a class="text_arial_href" href="controller.do?form_action=infoaccount"><b>Benvingut <%=userLogin%>! </b></a><font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="controller.do?form_action=logout"><b>Tancar sessió</b></a>
+                        <a class="text_arial_href" href="controller.do?form_action=infoaccount"><b>Benvingut <%=userLogin%>! </b></a><font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="controller.do?form_action=logout"><b>Tancar sessiÃ³</b></a>
                         
                         <%}else{%>
                         
-                        <a class="text_arial_href" href="login.jsp"><b>Iniciar Sessió </b></a> <font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="register.jsp"><b>Registrar-se</b></a>
+                        <a class="text_arial_href" href="login.jsp"><b>Iniciar SessiÃ³ </b></a> <font class="text_arial_href"><b>|</b></font> <a class="text_arial_href" href="register.jsp"><b>Registrar-se</b></a>
                         
                         <%}%>
                     </td>
@@ -41,13 +47,13 @@
             <table class="totample">
                 <tr>
                     <td id="barra_inici2">
-                        <font class="text_arial_blanc"><h2>Iniciar sessió</h2>
+                        <font class="text_arial_blanc"><h2>Login</h2>
                         </font>
                     </td>
                 </tr>
             </table>
         </div>
-                    <br><br>
+        <br><br>
         <form method="post" action="controller.do"> 
         <%if(!("").equals(request.getParameter("idOferta"))&&idOferta2!=0){%>
         <input type="hidden" name="idOferta3" value="<%=idOferta2%>"/>
@@ -73,7 +79,7 @@
                     <td class="error" colspan="2"><b>
                         <%
                             if((request.getParameter("dadesErronees")!=null) && request.getParameter("dadesErronees").equals("true")){
-                                 out.println("Dades èrronees");
+                                 out.println("Dades Ã¨rronees");
                         }
                             %></b>
                     </td>

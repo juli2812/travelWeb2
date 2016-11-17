@@ -22,6 +22,7 @@ private Time order_time;
 private int offer_id; 
 private int people;
 private String user_id;
+public static int numCom=5;
 
     public Order(float total_price, int order_id, Calendar order_date, Time order_time, int offer_id, int people, String user_id) {
         this.total_price = total_price;
@@ -31,6 +32,16 @@ private String user_id;
         this.offer_id = offer_id;
         this.people = people;
         this.user_id = user_id;
+    }
+    public Order(float total_price, Calendar order_date, Time order_time, int offer_id, int people, String user_id) {
+        this.total_price = total_price;
+        this.order_date = order_date;
+        this.order_time = order_time;
+        this.offer_id = offer_id;
+        this.people = people;
+        this.user_id = user_id;
+        this.order_id=numCom;
+        numCom++;
     }
     public Order (){
     }

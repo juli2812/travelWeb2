@@ -3,13 +3,7 @@
     Created on : 03-nov-2016, 13:00:10
     Author     : BEC.CA2
 --%>
-
-<%-- 
-    Document   : reserva_confirmada
-    Created on : 03-nov-2016, 13:00:10
-    Author     : BEC.CA2
---%>
-
+<jsp:useBean id="user" class="cat.urv.deim.sob.User" scope="session" />
 <%@page import="cat.urv.deim.sob.Order"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -62,9 +56,11 @@
                     <td class="borde_gris"><img src="css/reserva.jpg" alt="Smiley face" height="240px" width="400px"></td>
                     <td class="borde_gris"><font class="text_arial_blanc">
                     <h2>Reserva confirmada</h2>
-                    <br>Comanda #<%=comanda.getComandaReserva()%>
+                    <br><%=comanda.getComandaReserva()%>
                     </font></td>
                 </tr>
             </table>
+                                <%session.setAttribute("first", "0");%>
+                    <button onclick="document.location.href='index.jsp'">Torna a l'inici</button>
     </body>
 </html>

@@ -5,15 +5,12 @@
  */
 package cat.urv.deim.dao;
 
-import cat.urv.deim.sob.Offer;
 import cat.urv.deim.sob.Order;
-import com.sun.tools.xjc.reader.xmlschema.bindinfo.BIConversion.Static;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,7 +22,6 @@ import java.util.Date;
  * @author realm
  */
 public class DAOorder {
-    static int numCom=5;
     public ArrayList<Order> getComandes(String alias) throws SQLException, ParseException {
         ArrayList<Order> comandes = new ArrayList<>();
             Connection con;
@@ -64,8 +60,7 @@ public class DAOorder {
             ps.execute();
             Calendar cal = Calendar.getInstance();
             cal.setTime(utilDate);
-            comanda=new Order(preuTotal,numCom,cal,new java.sql.Time(sqlDate.getTime()),idOferta,persones,alias);
-            numCom=numCom++;
+            comanda=new Order(preuTotal,cal,new java.sql.Time(sqlDate.getTime()),idOferta,persones,alias);
         return comanda;
     }
 }

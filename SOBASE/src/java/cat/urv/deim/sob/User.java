@@ -123,7 +123,7 @@ public class User {
                 + "<b>Nom: " + getFirstName() + "</b><br>"
                 + "<b>Cognom:  " + getLastName() + "</b><br>"
                 + "<b>Cognom 2:  " + getLastName2() + "</b><br>"
-                + "<b>Pass:      " + getPass() + "</b><br>"
+                + "<b>Contrasenya:      " + getPass() + "</b><br>"
                 + "<b>E-mail:      " + getEmail() + "</b><br>"
                 + "<b>Telèfon:      " + getPhone() + "</b><br>"
                 + "<b>Sexe:  " + getSexe() + "</b><br>"
@@ -133,10 +133,6 @@ public class User {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date data =  getData_naix().getTime();
         String date = sdf.format(data);
-        String passLong="";
-        for(int i=0; i<getPass().length(); i++){
-            passLong=passLong+"*";
-        }
         return "<b>Nom complert:    </b>" + getLastName()+" "+ getLastName2() +", "+ getFirstName() + "<br>"
                 + "<b>Nom:             </b>" + getFirstName() + "<br>"
                 + "<b>Cognom:          </b>" + getLastName() + "<br>"
@@ -144,17 +140,10 @@ public class User {
                 + "<b>Sexe:            </b>" + getSexe() + "<br>"
                 + "<b>Data naixement:  </b>" + date + "<br>"
                 + "<b>Usuari:          </b>" + getAlias() + "<br>"
-                + "<b>Pass:            </b>" + passLong + "<br>"
+                + "<b>Contrasenya:            </b>" + getPass() + "<br>"
                 + "<b>E-mail:          </b>" + getEmail() + "<br>"
                 + "<b>Adreça:          </b>" + getAddress() + "<br>"
                 + "<b>Telèfon:         </b>" + getPhone() + "<br>";
     }
     
-    public String getMessage() {
-
-        return "\nFirst Name: " + getFirstName() + "\n"
-                + "Last Name:  " + getLastName() + "\n"
-                + "Email:      " + getEmail() + "\n"
-                + "Phone:      " + getPhone() + "\n";
-    }
 }

@@ -1,5 +1,5 @@
 <%-- 
-    Document   : exemple
+    Document   : oferta
     Created on : 03-nov-2016, 10:32:22
     Author     : BEC.CA2
 --%>
@@ -86,9 +86,11 @@
                                 <%session.setAttribute("preuPers", oferta.getPrice_pperson());%>
                                 <%session.setAttribute("placesDisp", oferta.getAvailable_sits());%>
                                 <%session.setAttribute("idOferta", oferta.getOffer_id());%>
+                                <%String j="1"; session.setAttribute("first", j);%>
                                 <%}else{%>
                                 <input type="hidden" name="form_action" value="offertologin"/>
                                 <input type="hidden" name="idOferta" value="<%=oferta.getOffer_id()%>"/>
+                                <input type="hidden" name="first" value="1"/>
                                 <%}%>
                                 <td><button onclick="history.back()">Enrere</button></td>
                                 <%if(userLogin!=null){%>

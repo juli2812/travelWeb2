@@ -1,5 +1,5 @@
 <%-- 
-    Document   : exemple
+    Document   : my_account
     Created on : 03-nov-2016, 10:32:22
     Author     : BEC.CA2
 --%>

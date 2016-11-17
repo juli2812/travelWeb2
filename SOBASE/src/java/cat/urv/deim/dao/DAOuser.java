@@ -5,7 +5,6 @@
  */
 package cat.urv.deim.dao;
 
-import cat.urv.deim.sob.Offer;
 import cat.urv.deim.sob.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -38,7 +36,7 @@ public class DAOuser {
             Date dateObj = curFormater.parse(resultSet.getString(9)); 
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(dateObj);
-            user=new User(resultSet.getString(3),resultSet.getString(4),resultSet.getString(5),resultSet.getString(8),resultSet.getString(7),resultSet.getString(1),resultSet.getString(6),calendar,"m","m");
+            user=new User(resultSet.getString(3),resultSet.getString(4),resultSet.getString(5),resultSet.getString(8),resultSet.getString(7),resultSet.getString(1),resultSet.getString(6),calendar,resultSet.getString(10),"oculta");
             }
         return user;
     }

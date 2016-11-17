@@ -50,8 +50,8 @@
         </div>
                     <br><br>
         <form action="controller.do" method="post">
-        <input type="hidden" name="form_action" value="register"/>
-            <table id="taula_login">
+        <input type="hidden" name="form_action" value="register" accept-charset="UTF-8"/>
+        <table id="taula_login">
                 <tr>
                     <td class="text_esquerra"><b>Usuari:</b></td>
                     <td class="text_esquerra">
@@ -107,6 +107,10 @@
                         <input type="text" size="20" name="data_naix"/>
                         <%}%>
                     </td>
+                </tr>
+                <tr>
+                    <td class="text_esquerra"><b>Sexe: </b></td>
+                    <td><input type="radio" name="sexe" value="Home" checked>HOME<input type="radio" name="sexe" value="Dona">DONA</td>
                 </tr>
                 <tr>
                     <td class="text_esquerra"><b>Adreça:</b></td>

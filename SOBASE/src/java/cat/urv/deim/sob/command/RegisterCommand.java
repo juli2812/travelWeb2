@@ -95,7 +95,7 @@ public class RegisterCommand implements Command{
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
             con.setSchema("DEMODB");
-            String sentenciaSQL = "INSERT INTO demodb.usuari(alias,contrasenya,nom,cognom1,cognom2,adreça,telefon,email,data_naix) VALUES (?,?,?,?,?,?,?,?,?)";
+            String sentenciaSQL = "INSERT INTO demodb.usuari(alias,contrasenya,nom,cognom1,cognom2,adreça,telefon,email,data_naix,sexe) VALUES (?,?,?,?,?,?,?,?,?,?)";
             ps = con.prepareStatement(sentenciaSQL);
                     ps.setString(1, request.getParameter("alias"));
                     ps.setString(2, DigestUtils.sha1Hex(request.getParameter("pass")));
@@ -106,6 +106,7 @@ public class RegisterCommand implements Command{
                     ps.setString(7, request.getParameter("phone"));
                     ps.setString(8, request.getParameter("email"));
                     ps.setString(9, request.getParameter("data_naix"));
+                    ps.setString(10, request.getParameter("sexe"));
             ps.executeUpdate();}
             // 2. produce the view with the web result
             ServletContext context = request.getSession().getServletContext();
