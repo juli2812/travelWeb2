@@ -2,7 +2,6 @@ package cat.urv.deim.sob;
 
 import cat.urv.deim.sob.command.Command;
 import cat.urv.deim.sob.command.RegisterCommand;
-import cat.urv.deim.sob.command.WriteCommand;
 import cat.urv.deim.sob.command.InitCommand;
 import cat.urv.deim.sob.command.LoginCommand;
 import cat.urv.deim.sob.command.InfoAccountCommand;
@@ -24,7 +23,6 @@ public class ControllerServlet extends HttpServlet {
     public void init() {
         // list of commands
         this.commands.put("init", new InitCommand());
-        this.commands.put("write", new WriteCommand());
         this.commands.put("register", new RegisterCommand());
         this.commands.put("login", new LoginCommand());
         this.commands.put("logintooffer", new LoginToOfferCommand());
