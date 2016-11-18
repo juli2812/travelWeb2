@@ -24,7 +24,8 @@ public class InitCommand implements Command {
             HttpServletResponse response)
             throws ServletException, IOException {
             HttpSession session = request.getSession(true);
-            // 1. process the request
+            /*accedim a la jsp index en el cas de que no se li indiqui cap
+            valor al form_action que rep el controllerServlet*/
            
                 ServletContext context = request.getSession().getServletContext();
                 context.getRequestDispatcher("/index.jsp").forward(request, response);

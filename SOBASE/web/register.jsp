@@ -49,6 +49,8 @@
                 </tr>
             </table>
         </div>
+        <%-- En aquesta jsp podem registrar un usuari sempre que 
+        complim els requísits esmentat en NORMES A SEGUIR--%>
                     <br><br>
         <form action="controller.do" method="post">
         <input type="hidden" name="form_action" value="register" accept-charset="UTF-8"/>
@@ -192,6 +194,11 @@
                             <%
                             if((request.getParameter("codiError")!=null) && request.getParameter("codiError").equals("9")){
                                  out.println("<br>Camp segon cognom obligatori, limitació de 12 caràcters.");
+                        }
+                            %>
+                            <%
+                            if((request.getParameter("codiError")!=null) && request.getParameter("codiError").equals("10")){
+                                 out.println("<br>Usuari existeix.");
                         }
                             %>
                     </td>

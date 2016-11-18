@@ -22,6 +22,9 @@ public class OfferToLoginCommand implements Command{
             HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
+            /*com que venim d'una oferta, li passem aquests parametres a la
+            jsp login per a després poder tornar a la mateixa oferta amb les
+            places que voliem reservar*/
             String idOferta = request.getParameter("idOferta");
             String placesReserva = request.getParameter("placesReserva");
             HttpSession session = request.getSession(true);

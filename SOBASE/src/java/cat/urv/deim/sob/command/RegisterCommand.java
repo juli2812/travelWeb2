@@ -5,6 +5,7 @@
  */
 package cat.urv.deim.sob.command;
 
+import cat.urv.deim.dao.DAOuser;
 import cat.urv.deim.sob.User;
 import java.io.IOException;
 import java.sql.Connection;
@@ -34,6 +35,8 @@ public class RegisterCommand implements Command{
             HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
+        /*Comprovem que totes les dades requerides estiguin correctes, no estiguin buides,
+        i si l'usuari no existeix el crearem nou*/
         HttpSession sesion = request.getSession(true);
         try {
             PreparedStatement ps;
@@ -74,8 +77,17 @@ public class RegisterCommand implements Command{
                 codiError=8;
                 totCorrecte=false;
             }
+            ServletContext context = request.getSession().getServletContext();
+            DAOuser u2=null;
             if(totCorrecte){
             User user = new User();
+            u2 = new DAOuser();
+            if(!("").equals(u2.existeix(request.getParameter("alias")))){
+                context.getRequestDispatcher("/register.jsp?totCorrecte=false&codiError=10&alias="+request.getParameter("alias")+"&first_name="+request.getParameter("first_name")
+                        +"&last_name="+request.getParameter("last_name")+"&last_name2="+request.getParameter("last_name2")
+                        +"&data_naix="+request.getParameter("data_naix")+"&address="+request.getParameter("address")+"&phone="
+                        +request.getParameter("phone")+"&email="+request.getParameter("email")).forward(request, response);
+            }
             user.setFirstName(request.getParameter("first_name"));
             user.setLastName(request.getParameter("last_name"));
             user.setEmail(request.getParameter("email"));
@@ -90,26 +102,10 @@ public class RegisterCommand implements Command{
             user.setPass(request.getParameter("pass"));
             user.setSexe(request.getParameter("sexe"));
             user.setAddress(request.getParameter("address"));
-            request.setAttribute("user", user);}
+            request.setAttribute("user", user);}/* l'atribut user és el que mostrarà la confirmació del registre*/
             if(totCorrecte){
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
-            con.setSchema("DEMODB");
-            String sentenciaSQL = "INSERT INTO demodb.usuari(alias,contrasenya,nom,cognom1,cognom2,adreça,telefon,email,data_naix,sexe) VALUES (?,?,?,?,?,?,?,?,?,?)";
-            ps = con.prepareStatement(sentenciaSQL);
-                    ps.setString(1, request.getParameter("alias"));
-                    ps.setString(2, DigestUtils.sha1Hex(request.getParameter("pass")));
-                    ps.setString(3, request.getParameter("first_name"));
-                    ps.setString(4, request.getParameter("last_name"));
-                    ps.setString(5, request.getParameter("last_name2"));
-                    ps.setString(6, request.getParameter("address"));
-                    ps.setString(7, request.getParameter("phone"));
-                    ps.setString(8, request.getParameter("email"));
-                    ps.setString(9, request.getParameter("data_naix"));
-                    ps.setString(10, request.getParameter("sexe"));
-            ps.executeUpdate();}
+            u2.registrar(request.getParameter("alias"), request.getParameter("pass"), request.getParameter("first_name"), request.getParameter("last_name"), request.getParameter("last_name2"), request.getParameter("address"), request.getParameter("phone"), request.getParameter("email"), request.getParameter("data_naix"), request.getParameter("sexe"));}
             // 2. produce the view with the web result
-            ServletContext context = request.getSession().getServletContext();
             if(totCorrecte){
             context.getRequestDispatcher("/registre_confirmat.jsp").forward(request, response);
             }
@@ -120,7 +116,7 @@ public class RegisterCommand implements Command{
                         +"&data_naix="+request.getParameter("data_naix")+"&address="+request.getParameter("address")+"&phone="
                         +request.getParameter("phone")+"&email="+request.getParameter("email")).forward(request, response);
             }
-        } catch (ClassNotFoundException | SQLException | ParseException ex) {
+        } catch (SQLException | ParseException ex) {
             Logger.getLogger(RegisterCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

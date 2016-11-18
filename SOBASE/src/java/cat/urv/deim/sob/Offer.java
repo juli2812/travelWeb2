@@ -24,8 +24,9 @@ private String destination;
 private Calendar departure_date;
 private Calendar arrival_date; //comprobar que es igual a departure_date + stay_days
 private int stay_days;
+private String big_description;
 
-    public Offer(int offer_id, String offer_title, String description, int available_sits, float price_pperson, String destination, int stay_days,Calendar departure_date,Calendar arrival_date) {
+    public Offer(int offer_id, String offer_title, String description, int available_sits, float price_pperson, String destination, int stay_days,Calendar departure_date,Calendar arrival_date,String big_description) {
         this.offer_id = offer_id;
         this.offer_title = offer_title;
         this.description = description;
@@ -35,6 +36,7 @@ private int stay_days;
         this.stay_days = stay_days;
         this.departure_date = departure_date;
         this.arrival_date = arrival_date;
+        this.big_description=big_description;
     }
 
 
@@ -123,6 +125,14 @@ private int stay_days;
 
     public void setStay_days(int stay_days) {
         this.stay_days = stay_days;
+    }
+    
+    public String getBig_description() {
+        return big_description;
+    }
+
+    public void setBig_description(String big_description) {
+        this.big_description = big_description;
     }
       
 }

@@ -58,6 +58,7 @@
         </div>
         <br>
         <br>
+        <%-- Mosta la informació de l'usuari i les seves comandes fins al moment--%>
             <table>
                 <tr>
                     <td class="borde_gris"><img src="images/usuari.jpg" alt="Smiley face" height="120px" width="120px"></td>

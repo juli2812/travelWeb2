@@ -41,7 +41,7 @@ public class DAOofertes {
                 calendar2 = Calendar.getInstance();
                 calendar.setTime(dateObj);
                 calendar2.setTime(dateObj2);
-                oferta=new Offer(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getInt(4),resultSet.getFloat(5),resultSet.getString(6),resultSet.getInt(9),calendar,calendar2);
+                oferta=new Offer(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getInt(4),resultSet.getFloat(5),resultSet.getString(6),resultSet.getInt(9),calendar,calendar2,resultSet.getString(10));
                 ofertes.add(oferta);
         }
         return ofertes;
@@ -66,7 +66,7 @@ public class DAOofertes {
                 calendar2 = Calendar.getInstance();
                 calendar.setTime(dateObj);
                 calendar2.setTime(dateObj2);
-                oferta=new Offer(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getInt(4),resultSet.getFloat(5),resultSet.getString(6),resultSet.getInt(9),calendar,calendar2);
+                oferta=new Offer(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getInt(4),resultSet.getFloat(5),resultSet.getString(6),resultSet.getInt(9),calendar,calendar2,resultSet.getString(10));
         }
         return oferta;
     }

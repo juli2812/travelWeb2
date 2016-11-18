@@ -54,6 +54,8 @@
                 </tr>
             </table>
         </div>
+                    <%-- El login comprova que la relació pass & user sigui la correcta, 
+                    sino ens torna a demanar login mostrant missatge d'error--%>
         <br><br>
         <form method="post" action="controller.do"> 
         <%if(!("").equals(request.getParameter("idOferta"))&&idOferta2!=0){%>

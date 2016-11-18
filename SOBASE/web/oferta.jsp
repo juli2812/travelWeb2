@@ -55,7 +55,8 @@
                 </tr>
             </table>
         </div>
-                    
+        <%-- En aquesta jsp mostrem la oferta que s'ha seleccionat però amb més detall, és a dir,
+        una descripció més llarga--%>     
         <br>
             <table class="totample">
                 <tr>
@@ -68,7 +69,7 @@
                     <b>Places lliures: </b><%=oferta.getAvailable_sits() %><br>
                     <b>Preu per persona: </b><%=oferta.getPrice_pperson() %> euros <br>
                     <b>Destinació: </b><%=oferta.getDestination() %><br>
-                    <b>Descripció: </b><%=oferta.getDescription() %>
+                    <b>Descripció: </b><%=oferta.getBig_description() %>
                     <form name="updateAccount" action="controller.do" method="post">
                         <table id="taula_login">
                             <tr>

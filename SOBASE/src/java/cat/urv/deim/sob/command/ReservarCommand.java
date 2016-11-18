@@ -22,6 +22,8 @@ public class ReservarCommand implements Command {
             HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
+        /*el command reserva ens permet reservar una oferta en el cas de que hi hagin places lliures
+        si tot funciona correctament ens mostra la confirmació, sino ens mostra un error*/
             HttpSession session = request.getSession(true);
             // 1. process the request
             int idOferta =  (int) session.getAttribute("idOferta");

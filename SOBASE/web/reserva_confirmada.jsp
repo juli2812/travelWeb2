@@ -52,6 +52,7 @@
         
         <br>
         <br>
+        <%-- En aquesta jsp mostrem la confirmació de la comanda amb la id de la comanda--%>
             <table>
                 <tr>
                     <td class="borde_gris"><img src="images/reserva.jpg" alt="Smiley face" height="240px" width="400px"></td>

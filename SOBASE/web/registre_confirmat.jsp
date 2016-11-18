@@ -46,6 +46,7 @@
                 </tr>
             </table>
         </div>
+        <%-- En aquesta jsp mostrem la confirmació del registre--%>
         <br>
         <br>
             <table class="totample">

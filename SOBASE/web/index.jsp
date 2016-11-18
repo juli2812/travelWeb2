@@ -51,7 +51,9 @@
                 </tr>
             </table>
         </div>
-                    <br>
+        <%-- En aquesta jsp mostrem totes les ofertes disponibles, i també les que s'han esgotat, 
+        si està disponible podrem accedir a la oferta, si està esgotada no ens ho permet--%>
+        <br>
         <% Offer oferta;
         ArrayList<Offer> ofertes = listaOfertes.getOfertes();
         oferta=ofertes.get(0);
@@ -68,7 +70,11 @@
                         <font class="no_disp"><b>NO DISPONIBLE, Places esgotades</b><br></font>
                         <%}%>
                         <font class="text_arial_blanc">
-                        <a  href="oferta.jsp?id_oferta=<%=oferta.getOffer_id()%>"><font class="text_arial_href"><b><%=oferta.getOffer_title() %></b></font></a><br><br>
+                        <a  href="oferta.jsp?id_oferta=<%=oferta.getOffer_id()%>">
+                        <font class="text_arial_href">
+                        <b><%=oferta.getOffer_title() %></b>
+                        </font>
+                        </a><br><br>
                         <b>Dies d'estada: </b><%=oferta.getStay_days() %><br>
                         <b>Dia sortida: </b><%=oferta.getDeparture_dateString() %><br>
                         <b>Dia tornada: </b><%=oferta.getArrival_dateString() %><br>

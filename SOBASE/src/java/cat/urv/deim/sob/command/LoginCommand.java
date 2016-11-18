@@ -34,19 +34,21 @@ public class LoginCommand implements Command{
             String alias = request.getParameter("alias");   //get user ans password
             String pass = request.getParameter("pass");
             HttpSession session = request.getSession(true);
-            // 1. process the request
+            /*si l'usuari i password que rebem són correctes segons el nostre DAO que accedeix
+            a base de dades i ens retorna l'alias de l'usuari en cas de que sigui correcte,
+            en aquest cas fem login i tornem a index.jsp  */
             
             DAOuser n= new DAOuser();
             String a="";
         try {
-            a = n.getLogin(alias, pass);
+            a = n.getLogin(alias, pass);    // nos devolverá el alias que coincide con el que nos han pasado y su password
         } catch (SQLException ex) {
             Logger.getLogger(LoginCommand.class.getName()).log(Level.SEVERE, null, ex);
             
         }
         ServletContext context = request.getSession().getServletContext();
         if((alias!=null)&&(!("").equals(alias))){
-            if (a.equals(alias)) {     //if is correct go to main
+            if (a.equals(alias)) {     //si alias coincide con el que nos pasan entonces vamos al index
                 session.setAttribute("aliasLogin", a);
                 context.getRequestDispatcher("/index.jsp").forward(request, response);
             }

@@ -27,6 +27,10 @@ public class LoginToOfferCommand implements Command{
             HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
+            /*si l'usuari i password que rebem són correctes segons el nostre DAO que accedeix
+            a base de dades i ens retorna l'alias de l'usuari en cas de que sigui correcte,
+            en aquest cas hem vingut des d'una oferta i tornariem a la oferta però amb el login
+            fet, per a tornar a l'oferta ho fem amb els parametres que hem rebut retornant-li a l'URL*/
             String alias = request.getParameter("alias");   //get user ans password
             String pass = request.getParameter("pass");
             String idOfertaST = request.getParameter("idOferta3");

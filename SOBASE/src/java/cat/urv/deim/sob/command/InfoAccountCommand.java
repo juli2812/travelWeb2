@@ -34,6 +34,9 @@ public class InfoAccountCommand implements Command{
             HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
+        /*agafem la informació de la sessió i amb l'usuari que tenim mostrarem les
+        dades de l'usuari i les seves comandes en la jsp my_account, les dades les 
+        obtenim accedint als DAO pertinents*/
         HttpSession session = request.getSession(true);
         String userLogin = (String) session.getAttribute("aliasLogin");
         DAOuser users=new DAOuser();

@@ -40,6 +40,38 @@ public class DAOuser {
             }
         return user;
     }
+    public String existeix(String alias) throws SQLException, ParseException {
+        Connection con;
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
+            con.setSchema("DEMODB");
+            String query = "SELECT * FROM DEMODB.USUARI where alias = ?";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, alias);
+            ResultSet resultSet=ps.executeQuery();
+            if (resultSet.next()) {
+            return resultSet.getString(1);
+            }
+        return "";
+    }
+    public void registrar (String alias, String pass,String first_name, String last_name, String last_name2, String address, String phone, String email, String data_naix, String sexe) throws SQLException{
+        Connection con;
+        PreparedStatement ps;
+        con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
+            con.setSchema("DEMODB");
+            String sentenciaSQL = "INSERT INTO demodb.usuari(alias,contrasenya,nom,cognom1,cognom2,adreça,telefon,email,data_naix,sexe) VALUES (?,?,?,?,?,?,?,?,?,?)";
+            ps = con.prepareStatement(sentenciaSQL);
+                    ps.setString(1, alias);
+                    ps.setString(2, DigestUtils.sha1Hex(pass));
+                    ps.setString(3, first_name);
+                    ps.setString(4, last_name);
+                    ps.setString(5, last_name2);
+                    ps.setString(6, address);
+                    ps.setString(7, phone);
+                    ps.setString(8, email);
+                    ps.setString(9, data_naix);
+                    ps.setString(10, sexe);
+            ps.executeUpdate();
+    }
     public String getLogin (String alias, String pass) throws SQLException{
         Connection con;
         PreparedStatement ps;
