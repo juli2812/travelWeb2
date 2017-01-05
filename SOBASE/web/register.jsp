@@ -105,9 +105,9 @@
                     <td class="text_esquerra"><b>Data naixement*:</b></td>
                     <td class="text_esquerra">
                         <%if(request.getParameter("data_naix")!=null){%>
-                        <input type="date" size="20" name="data_naix"  value="<%=request.getParameter("data_naix")%>"/>
+                        <input type="date" size="20" name="data_naix"  value="<%=request.getParameter("data_naix")%>" placeholder="dd/MM/yyyy"/>
                         <%}else{%>
-                        <input type="date" size="20" name="data_naix"/>
+                        <input type="date" size="20" name="data_naix" placeholder="dd/MM/yyyy"/>
                         <%}%>
                     </td>
                 </tr>

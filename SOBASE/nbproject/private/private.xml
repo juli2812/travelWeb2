@@ -2,30 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/src/java/cat/urv/deim/sob/command/LoginCommand.java</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/src/java/cat/urv/deim/dao/DAOofertes.java</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/web/login.jsp</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/src/java/cat/urv/deim/sob/Offer.java</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/src/java/cat/urv/deim/sob/Order.java</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/web/oferta.jsp</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/web/index.html</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/src/java/cat/urv/deim/sob/command/ReservarCommand.java</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/src/java/cat/urv/deim/sob/command/LogoutCommand.java</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/src/java/cat/urv/deim/dao/DAOorder.java</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/src/java/cat/urv/deim/sob/command/OfferToLoginCommand.java</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/src/java/cat/urv/deim/sob/command/InfoAccountCommand.java</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/web/error.jsp</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/web/install.jsp</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/src/java/cat/urv/deim/sob/command/RegisterCommand.java</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/web/css/index.css</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/web/my_account.jsp</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/src/java/cat/urv/deim/sob/command/InitCommand.java</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/src/java/cat/urv/deim/sob/command/LoginToOfferCommand.java</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/web/css/login.css</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/web/reserva_confirmada.jsp</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/web/index.jsp</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/gittt/sob/SOBASE/web/registre_confirmat.jsp</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
