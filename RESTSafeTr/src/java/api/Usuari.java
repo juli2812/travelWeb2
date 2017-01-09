@@ -5,6 +5,7 @@
  */
 package api;
 
+import com.google.gson.Gson;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -223,6 +224,20 @@ public class Usuari implements Serializable {
         return true;
     }
 
+    public void convertToUser(String data){
+         Gson gs =new Gson();
+         Usuari usuari=gs.fromJson(data, Usuari.class);
+         this.nom=usuari.getNom();
+         this.cognom1=usuari.getCognom1();
+         this.cognom2=usuari.getCognom2();
+         this.contrasenya=usuari.getContrasenya();
+         this.telefon=usuari.getTelefon();
+         this.email=usuari.getEmail();
+         this.dataNaix=usuari.getDataNaix();
+         this.adreça=usuari.getAdreça();
+         this.sexe=usuari.getSexe();
+         this.alias=usuari.getAlias();
+    }
     @Override
     public String toString() {
         return "api.Usuari[ alias=" + alias + " ]";
