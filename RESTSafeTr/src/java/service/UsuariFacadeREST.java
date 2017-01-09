@@ -15,6 +15,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -87,6 +88,12 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
             Gson gs2 =new Gson();
             resultado = gs2.toJson(userList);
         } catch (SQLException ex) {
+            while(ex != null) {
+                System.out.println("Message:  " + ex.getMessage());
+                System.out.println("SQLSTATE: " + ex.getSQLState());            
+                System.out.println("Código de error SQL: " + ex.getErrorCode()); 
+                ex=ex.getNextException();
+            }
         }
         return resultado;
     }
@@ -129,7 +136,7 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
             resultSet = ps.executeQuery();
             while(resultSet.next()){
                 comanda=new Comanda();
-                comanda.setIdOferta(resultSet.getObject(1, Oferta.class));
+                //comanda.setIdOferta(resultSet.getObject(1, Oferta.class)); # esto de momento falla
                 comanda.setPersonas(resultSet.getInt(2));
                 comanda.setPreuTotal(resultSet.getDouble(3));
                 listaComanda.add(comanda);
@@ -138,12 +145,18 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
             Gson gs2 =new Gson();
             resultado = gs2.toJson(user2).concat(gs2.toJson(listaComanda));
         } catch (SQLException ex) {
+            while(ex != null) {
+                System.out.println("Message:  " + ex.getMessage());
+                System.out.println("SQLSTATE: " + ex.getSQLState());            
+                System.out.println("Código de error SQL: " + ex.getErrorCode()); 
+                ex=ex.getNextException();
+            }
         }
         return resultado;
     }
-       
+    
+    @PUT   
     @Path("/users/{id}")
-    @PUT
     @Consumes("application/json")
        public void updateUser(@PathParam("id") String id, String data) throws ParseException, ClassNotFoundException {
         PreparedStatement ps;
@@ -154,7 +167,7 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
             Class.forName("org.apache.derby.jdbc.ClientDriver");    //database connection
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
             con.setSchema("DEMODB");
-            String query = "UPDATE USUARI SET CONTRASENYA = ?,NOM = ?,COGNOM1=?,COGNOM2=?,ADREÇA=?,TELEFON=?,EMAIL=?,SEXE=? WHERE ALIAS = ?";
+            String query = "UPDATE USUARI SET CONTRASENYA = ?,NOM = ?,COGNOM1=?,COGNOM2=?,ADREÇA=?,TELEFON=?,EMAIL=?,DATA_NAIX=?,SEXE=? WHERE ALIAS = ?";
             ps = con.prepareStatement(query);
             ps.setString(1, usuari.getContrasenya());
             ps.setString(2, usuari.getNom());
@@ -163,21 +176,65 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
             ps.setString(5, usuari.getAdreça());
             ps.setString(6, usuari.getTelefon());
             ps.setString(7, usuari.getEmail());
-            //ps.setDate(8, (java.sql.Date) new java.sql.Date(usuari.getDataNaix().getTime()));
-            ps.setString(8, usuari.getSexe());
-            ps.setString(9, id);
-            ps.executeQuery();
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            ps.setString(8, df.format(usuari.getDataNaix()));
+            ps.setString(9, usuari.getSexe());
+            ps.setString(10, id);
+            ps.executeUpdate();
             con.close();
         } catch (SQLException ex) {
+            while(ex != null) {
+                System.out.println("Message:  " + ex.getMessage());
+                System.out.println("SQLSTATE: " + ex.getSQLState());            
+                System.out.println("Código de error SQL: " + ex.getErrorCode()); 
+                ex=ex.getNextException();
+            }
+            
         }
     }
-       
-    @Path("/users/{id}")
-    @DELETE
-       public String delUser(@PathParam("id") String id) throws ParseException, ClassNotFoundException {
+    
+    @POST
+    @Path("/users")
+    @Consumes("application/json")
+       public void addUser(String data) throws ClassNotFoundException {
         PreparedStatement ps;
         Connection con;
-        String resultado = "";
+        Gson gs =new Gson();
+        Usuari u=gs.fromJson(data, Usuari.class);
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");    //database connection
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
+            con.setSchema("DEMODB");
+            String query = "INSERT INTO USUARI(ALIAS,CONTRASENYA,NOM,COGNOM1,COGNOM2,ADREÇA,TELEFON,EMAIL,DATA_NAIX,SEXE) VALUES(?,?,?,?,?,?,?,?,?,?)";
+            ps = con.prepareStatement(query);
+            ps.setString(1, u.getAlias());
+            ps.setString(2, u.getContrasenya());
+            ps.setString(3, u.getNom());
+            ps.setString(4, u.getCognom1());
+            ps.setString(5, u.getCognom2());
+            ps.setString(6, u.getAdreça());
+            ps.setString(7, u.getTelefon());
+            ps.setString(8, u.getEmail());
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            ps.setString(9, df.format(u.getDataNaix()));
+            ps.setString(10, u.getSexe());
+            ps.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            while(ex != null) {
+                System.out.println("Message:  " + ex.getMessage());
+                System.out.println("SQLSTATE: " + ex.getSQLState());            
+                System.out.println("Código de error SQL: " + ex.getErrorCode()); 
+                ex=ex.getNextException();
+             }
+        }
+    }
+     
+    @DELETE
+    @Path("/users/{id}")
+       public void delUser(@PathParam("id") String id) throws ClassNotFoundException {
+        PreparedStatement ps;
+        Connection con;
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");    //database connection
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
@@ -185,43 +242,15 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
             String query = "DELETE FROM USUARI WHERE ALIAS = ?";
             ps = con.prepareStatement(query);
             ps.setString(1, id);
-            ps.executeQuery();
+            ps.executeUpdate();
             con.close();
         } catch (SQLException ex) {
-        }
-        return resultado;
-    }
-    
-    @Path("/users")
-    @POST
-    @Consumes("application/json")
-    public void addUser(String data) throws SQLException {
-        Usuari usuari = new Usuari();
-        usuari.convertToUser(data);
-        PreparedStatement ps;
-        Connection con;
-
-        try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");    //database connection
-            con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
-            con.setSchema("DEMODB");
-            String sql = "INSERT INTO USUARI(ALIAS,CONTRASENYA,NOM,COGNOM1,COGNOM2,ADREÇA,TELEFON,EMAIL,DATA_NAIX,SEXE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-            ps = con.prepareStatement(sql);
-            ps.setString(1, usuari.getAlias());
-            ps.setString(2, usuari.getContrasenya());
-            ps.setString(3, usuari.getNom());
-            ps.setString(4, usuari.getCognom1());
-            ps.setString(5, usuari.getCognom2());
-            ps.setString(6, usuari.getAdreça());
-            ps.setString(7, usuari.getTelefon());
-            ps.setString(8, usuari.getEmail());
-            ps.setDate(9, (java.sql.Date) usuari.getDataNaix());
-            ps.setString(10, usuari.getSexe());
-            
-
-            ps.executeUpdate();
-        } catch (ClassNotFoundException | SQLException ex) {
+            while(ex != null) {
+                System.out.println("Message:  " + ex.getMessage());
+                System.out.println("SQLSTATE: " + ex.getSQLState());            
+                System.out.println("Código de error SQL: " + ex.getErrorCode()); 
+                ex=ex.getNextException();
+             }
         }
     }
        
