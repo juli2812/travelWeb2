@@ -227,7 +227,10 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
              }
         }
     }
-     
+    
+    /********************************/   
+    /* OPCIONAL: Elimina un usuari. */
+    /********************************/
     @DELETE
     @Path("/{id}")
        public void delUser(@PathParam("id") String id) throws ClassNotFoundException {

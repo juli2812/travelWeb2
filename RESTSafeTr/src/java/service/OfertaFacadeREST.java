@@ -13,6 +13,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -134,39 +135,124 @@ public class OfertaFacadeREST extends AbstractFacade<Oferta> {
         return resultado;
     }
     
+    
     @POST
+    @Consumes("application/json")
+       public void addUser(String data) throws ClassNotFoundException {
+        PreparedStatement ps;
+        Connection con;
+        Gson gs =new Gson();
+        Oferta oferta=gs.fromJson(data, Oferta.class);
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");    //database connection
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
+            con.setSchema("DEMODB");
+            String query = "INSERT INTO OFERTA(titol_oferta,descripcio,places_disp,preu_pers,desti,data_sortida,data_tornada,dies_estada,descripcio_gran) VALUES(?,?,?,?,?,?,?,?,?)";
+            ps = con.prepareStatement(query);
+            ps.setString(1, oferta.getTitolOferta());
+            ps.setString(2, oferta.getDescripcio());
+            ps.setInt(3, oferta.getPlacesDisp());
+            ps.setDouble(4, oferta.getPreuPers());
+            ps.setString(5, oferta.getDesti());
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            ps.setString(6, df.format(oferta.getDataSortida()));
+            ps.setString(7, df.format(oferta.getDataTornada()));
+            ps.setInt(8,oferta.getDiesEstada());
+            ps.setString(9, oferta.getDescripcioGran());
+            ps.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            while(ex != null) {
+                System.out.println("Message:  " + ex.getMessage());
+                System.out.println("SQLSTATE: " + ex.getSQLState());            
+                System.out.println("Código de error SQL: " + ex.getErrorCode()); 
+                ex=ex.getNextException();
+             }
+        }
+    }
+       
+    /*********************************/   
+    /* OPCIONAL: Modifica una oferta.*/
+    /*********************************/
+    @PUT   
+    @Path("/{id}")
+    @Consumes("application/json")
+       public void updateOffer(@PathParam("id") String id, String data) throws ParseException, ClassNotFoundException {
+        PreparedStatement ps;
+        Connection con;
+        try {
+            Gson gs =new Gson();
+            Oferta oferta=gs.fromJson(data, Oferta.class);
+            Class.forName("org.apache.derby.jdbc.ClientDriver");    //database connection
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
+            con.setSchema("DEMODB");
+            String query = "UPDATE OFERTA SET titol_oferta=?,descripcio=?,places_disp=?,preu_pers=?,desti=?,data_sortida=?,data_tornada=?,dies_estada=?,descripcio_gran=? where oferta_id=?";
+            ps = con.prepareStatement(query);
+            ps.setString(1, oferta.getTitolOferta());
+            ps.setString(2, oferta.getDescripcio());
+            ps.setInt(3, oferta.getPlacesDisp());
+            ps.setDouble(4, oferta.getPreuPers());
+            ps.setString(5, oferta.getDesti());
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            ps.setString(6, df.format(oferta.getDataSortida()));
+            ps.setString(7, df.format(oferta.getDataTornada()));
+            ps.setInt(8,oferta.getDiesEstada());
+            ps.setString(9, oferta.getDescripcioGran());
+            ps.setString(10, id);
+            ps.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            while(ex != null) {
+                System.out.println("Message:  " + ex.getMessage());
+                System.out.println("SQLSTATE: " + ex.getSQLState());            
+                System.out.println("Código de error SQL: " + ex.getErrorCode()); 
+                ex=ex.getNextException();
+            }
+            
+        }
+    }
+    
+    /********************************/   
+    /* OPCIONAL: Elimina una oferta.*/
+    /********************************/
+    @DELETE
+    @Path("/{id}")
+       public void delOffer(@PathParam("id") String id) throws ClassNotFoundException {
+        PreparedStatement ps;
+        Connection con;
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");    //database connection
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
+            con.setSchema("DEMODB");
+            String query = "DELETE FROM OFERTA WHERE OFERTA_ID = ?";
+            ps = con.prepareStatement(query);
+            ps.setString(1, id);
+            ps.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            while(ex != null) {
+                System.out.println("Message:  " + ex.getMessage());
+                System.out.println("SQLSTATE: " + ex.getSQLState());            
+                System.out.println("Código de error SQL: " + ex.getErrorCode()); 
+                ex=ex.getNextException();
+             }
+        }
+    }
+       
+    /*@POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Oferta entity) {
         super.create(entity);
-    }
+    }*/
 
-    @PUT
+    /*@PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void edit(@PathParam("id") Integer id, Oferta entity) {
         super.edit(entity);
-    }
-
-    @DELETE
-    @Path("{id}")
-    public void remove(@PathParam("id") Integer id) {
-        super.remove(super.find(id));
-    }
-
-    /*@GET
-    @Path("{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Oferta find(@PathParam("id") Integer id) {
-        return super.find(id);
-    }
-
-    @GET
-    @Override
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Oferta> findAll() {
-        return super.findAll();
     }*/
+
 
     @GET
     @Path("{from}/{to}")
