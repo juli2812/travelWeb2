@@ -8,6 +8,7 @@ package service;
 import api.Oferta;
 import api.Usuari;
 import com.google.gson.Gson;
+import java.io.StringReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -31,6 +32,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 
 /**
  *
@@ -47,6 +51,12 @@ public class OfertaFacadeREST extends AbstractFacade<Oferta> {
         super(Oferta.class);
     }
     
+    /**
+     *
+     * @return
+     * @throws ParseException
+     * @throws ClassNotFoundException
+     */
     @GET
     @Produces("application/json")
        public String getOffers() throws ParseException, ClassNotFoundException {
@@ -89,6 +99,101 @@ public class OfertaFacadeREST extends AbstractFacade<Oferta> {
             }
         }
         return resultado;
+    }
+    
+    /**
+     *
+     * @return
+     * @throws ParseException
+     * @throws ClassNotFoundException
+     */
+    @GET
+    @Produces("application/xml")
+       public List<Oferta> getOffersXml() throws ParseException, ClassNotFoundException {
+        PreparedStatement ps;
+        Connection con;
+        List<Oferta> offerList = new ArrayList<Oferta>();
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");    //database connection
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
+            con.setSchema("DEMODB");
+            String query = "SELECT * FROM OFERTA";
+            ps = con.prepareStatement(query);
+            ResultSet resultSet = ps.executeQuery();
+            Oferta offer;
+            while(resultSet.next()) {     //if is correct go to main
+                offer = new Oferta();
+                offer.setOfertaId(resultSet.getInt(1));
+                offer.setTitolOferta(resultSet.getString(2));
+                offer.setDescripcio(resultSet.getString(3));
+                offer.setPlacesDisp(resultSet.getInt(4));
+                offer.setPreuPers(resultSet.getDouble(5));
+                offer.setDesti(resultSet.getString(6));
+                SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-MM-dd"); 
+                offer.setDataSortida(curFormater.parse(resultSet.getString(7)));
+                offer.setDataTornada(curFormater.parse(resultSet.getString(8)));
+                offer.setDiesEstada(resultSet.getInt(9));
+                offer.setDescripcioGran(resultSet.getString(10));
+                offerList.add(offer);
+            }
+            con.close();
+        } catch (SQLException ex) {
+            while(ex != null) {
+                System.out.println("Message:  " + ex.getMessage());
+                System.out.println("SQLSTATE: " + ex.getSQLState());            
+                System.out.println("Código de error SQL: " + ex.getErrorCode()); 
+                ex=ex.getNextException();
+            }
+        }
+        return offerList;
+    }
+       
+    /**
+     *
+     * @param id
+     * @return
+     * @throws ParseException
+     * @throws ClassNotFoundException
+     */
+    @GET
+    @Path("/{id}")
+    @Produces("application/xml")
+       public Oferta getOfferXml(@PathParam("id") String id) throws ParseException, ClassNotFoundException {
+        PreparedStatement ps;
+        Connection con;
+        Oferta offer=new Oferta();
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");    //database connection
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
+            con.setSchema("DEMODB");
+            String query = "SELECT * FROM OFERTA WHERE OFERTA_ID = ?";
+            ps = con.prepareStatement(query);
+            ps.setString(1, id);
+            ResultSet resultSet = ps.executeQuery();
+            if(resultSet.next()) {     //if is correct go to main
+                offer = new Oferta();
+                offer.setOfertaId(resultSet.getInt(1));
+                offer.setTitolOferta(resultSet.getString(2));
+                offer.setDescripcio(resultSet.getString(3));
+                offer.setPlacesDisp(resultSet.getInt(4));
+                offer.setPreuPers(resultSet.getDouble(5));
+                offer.setDesti(resultSet.getString(6));
+                SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-MM-dd"); 
+                offer.setDataSortida(curFormater.parse(resultSet.getString(7)));
+                offer.setDataTornada(curFormater.parse(resultSet.getString(8)));
+                offer.setDiesEstada(resultSet.getInt(9));
+                offer.setDescripcioGran(resultSet.getString(10));
+            }
+            con.close();
+        } catch (SQLException ex) {
+            while(ex != null) {
+                System.out.println("Message:  " + ex.getMessage());
+                System.out.println("SQLSTATE: " + ex.getSQLState());            
+                System.out.println("Código de error SQL: " + ex.getErrorCode()); 
+                ex=ex.getNextException();
+            }
+        }
+        return offer;
     }
     
     @GET
@@ -135,10 +240,9 @@ public class OfertaFacadeREST extends AbstractFacade<Oferta> {
         return resultado;
     }
     
-    
     @POST
     @Consumes("application/json")
-       public void addUser(String data) throws ClassNotFoundException {
+       public void addOferta(String data) throws ClassNotFoundException {
         PreparedStatement ps;
         Connection con;
         Gson gs =new Gson();
@@ -170,10 +274,53 @@ public class OfertaFacadeREST extends AbstractFacade<Oferta> {
              }
         }
     }
+    
+    
+    @POST
+    @Consumes("application/xml")
+       public void addOfertaXml(String data) throws ClassNotFoundException, JAXBException {
+        PreparedStatement ps;
+        Connection con;
+        StringReader sr = new StringReader(data);
+        JAXBContext jaxbContext = JAXBContext.newInstance(Oferta.class);
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        Oferta oferta = (Oferta) unmarshaller.unmarshal(sr);
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");    //database connection
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
+            con.setSchema("DEMODB");
+            String query = "INSERT INTO OFERTA(titol_oferta,descripcio,places_disp,preu_pers,desti,data_sortida,data_tornada,dies_estada,descripcio_gran) VALUES(?,?,?,?,?,?,?,?,?)";
+            ps = con.prepareStatement(query);
+            ps.setString(1, oferta.getTitolOferta());
+            ps.setString(2, oferta.getDescripcio());
+            ps.setInt(3, oferta.getPlacesDisp());
+            ps.setDouble(4, oferta.getPreuPers());
+            ps.setString(5, oferta.getDesti());
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            ps.setString(6, df.format(oferta.getDataSortida()));
+            ps.setString(7, df.format(oferta.getDataTornada()));
+            ps.setInt(8,oferta.getDiesEstada());
+            ps.setString(9, oferta.getDescripcioGran());
+            ps.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            while(ex != null) {
+                System.out.println("Message:  " + ex.getMessage());
+                System.out.println("SQLSTATE: " + ex.getSQLState());            
+                System.out.println("Código de error SQL: " + ex.getErrorCode()); 
+                ex=ex.getNextException();
+             }
+        }
+    }
+       
        
     /*********************************/   
     /* OPCIONAL: Modifica una oferta.*/
-    /*********************************/
+    /**
+     * @param id*
+     * @param data*
+     * @throws java.text.ParseException*
+     * @throws java.lang.ClassNotFoundException****************************/
     @PUT   
     @Path("/{id}")
     @Consumes("application/json")
@@ -183,6 +330,54 @@ public class OfertaFacadeREST extends AbstractFacade<Oferta> {
         try {
             Gson gs =new Gson();
             Oferta oferta=gs.fromJson(data, Oferta.class);
+            Class.forName("org.apache.derby.jdbc.ClientDriver");    //database connection
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
+            con.setSchema("DEMODB");
+            String query = "UPDATE OFERTA SET titol_oferta=?,descripcio=?,places_disp=?,preu_pers=?,desti=?,data_sortida=?,data_tornada=?,dies_estada=?,descripcio_gran=? where oferta_id=?";
+            ps = con.prepareStatement(query);
+            ps.setString(1, oferta.getTitolOferta());
+            ps.setString(2, oferta.getDescripcio());
+            ps.setInt(3, oferta.getPlacesDisp());
+            ps.setDouble(4, oferta.getPreuPers());
+            ps.setString(5, oferta.getDesti());
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            ps.setString(6, df.format(oferta.getDataSortida()));
+            ps.setString(7, df.format(oferta.getDataTornada()));
+            ps.setInt(8,oferta.getDiesEstada());
+            ps.setString(9, oferta.getDescripcioGran());
+            ps.setString(10, id);
+            ps.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            while(ex != null) {
+                System.out.println("Message:  " + ex.getMessage());
+                System.out.println("SQLSTATE: " + ex.getSQLState());            
+                System.out.println("Código de error SQL: " + ex.getErrorCode()); 
+                ex=ex.getNextException();
+            }
+            
+        }
+    }
+       
+    /*********************************/   
+    /* OPCIONAL: Modifica una oferta.*/
+    /**
+     * @param id*
+     * @param data*
+     * @throws java.text.ParseException*
+     * @throws java.lang.ClassNotFoundException*
+     * @throws javax.xml.bind.JAXBException***************************/
+    @PUT   
+    @Path("/{id}")
+    @Consumes("application/xml")
+       public void updateOfferXml(@PathParam("id") String id, String data) throws ParseException, ClassNotFoundException, JAXBException {
+        PreparedStatement ps;
+        Connection con;
+        StringReader sr = new StringReader(data);
+        JAXBContext jaxbContext = JAXBContext.newInstance(Oferta.class);
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        Oferta oferta = (Oferta) unmarshaller.unmarshal(sr);
+        try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");    //database connection
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
             con.setSchema("DEMODB");

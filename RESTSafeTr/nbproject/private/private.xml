@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/BEC.CA2/Desktop/sob/RESTSafeTr/src/java/service/UsuariFacadeREST.java</file>
-            <file>file:/C:/Users/BEC.CA2/Desktop/sob/RESTSafeTr/src/java/service/OfertaFacadeREST.java</file>
+            <file>file:/C:/Users/realm/Desktop/sob/RESTSafeTr/src/java/service/UsuariFacadeREST.java</file>
+            <file>file:/C:/Users/realm/Desktop/sob/RESTSafeTr/src/java/service/OfertaFacadeREST.java</file>
+            <file>file:/C:/Users/realm/Desktop/sob/RESTSafeTr/src/java/service/ComandaFacadeREST.java</file>
+            <file>file:/C:/Users/realm/Desktop/sob/RESTSafeTr/web/WEB-INF/glassfish-resources.xml</file>
         </group>
     </open-files>
 </project-private>

@@ -138,7 +138,7 @@ public class ComandaFacadeREST extends AbstractFacade<Comanda> {
                 offer.setDiesEstada(resultSet.getInt(9));
                 offer.setDescripcioGran(resultSet.getString(10));
             }
-            String query2 = "INSERT INTO COMANDA(id_usuari,id_oferta,preu_total,personas,data,hora) VALUES (?,?,?,?,?,?)";
+           /* String query2 = "INSERT INTO COMANDA(id_usuari,id_oferta,preu_total,personas,data,hora) VALUES (?,?,?,?,?,?)";
             ps = con.prepareStatement(query2);
             ps.setString(1, user2.getAlias());
             ps.setInt(2, offer.getOfertaId());
@@ -150,7 +150,7 @@ public class ComandaFacadeREST extends AbstractFacade<Comanda> {
             ps.setString(6, df2.format(comanda.getHora()));
             ps.executeUpdate();
             //String query3 = "UPDATE OFERTA SET titol_oferta=?,descripcio=?,places_disp=?,preu_pers=?,desti=?,data_sortida=?,data_tornada=?,dies_estada=?,descripcio_gran=? where oferta_id=?";
-            con.close();
+            */con.close();
         } catch (SQLException ex) {
             while(ex != null) {
                 System.out.println("Message:  " + ex.getMessage());
