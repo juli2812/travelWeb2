@@ -41,7 +41,7 @@ import javax.ws.rs.QueryParam;
  * @author realm
  */
 @Stateless
-@Path("/rest/api/v1")
+@Path("/rest/api/v1/users")
 public class UsuariFacadeREST extends AbstractFacade<Usuari> {
 
     
@@ -53,7 +53,6 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
     }
     
     @GET
-    @Path("/users")
     @Produces("application/json")
        public String getUsers() throws ParseException, ClassNotFoundException {
         PreparedStatement ps;
@@ -98,7 +97,7 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
         return resultado;
     }
        
-    @Path("/users/{id}")
+    @Path("/{id}")
     @GET
     @Produces("application/json")
        public String getUser(@PathParam("id") String id) throws ParseException, ClassNotFoundException {
@@ -156,7 +155,7 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
     }
     
     @PUT   
-    @Path("/users/{id}")
+    @Path("/{id}")
     @Consumes("application/json")
        public void updateUser(@PathParam("id") String id, String data) throws ParseException, ClassNotFoundException {
         PreparedStatement ps;
@@ -194,7 +193,6 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
     }
     
     @POST
-    @Path("/users")
     @Consumes("application/json")
        public void addUser(String data) throws ClassNotFoundException {
         PreparedStatement ps;
@@ -231,7 +229,7 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
     }
      
     @DELETE
-    @Path("/users/{id}")
+    @Path("/{id}")
        public void delUser(@PathParam("id") String id) throws ClassNotFoundException {
         PreparedStatement ps;
         Connection con;
@@ -254,7 +252,7 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
         }
     }
        
-    @POST
+    /*@POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Usuari entity) {
@@ -301,7 +299,7 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
     @Produces(MediaType.TEXT_PLAIN)
     public String countREST() {
         return String.valueOf(super.count());
-    }
+    }*/
 
     @Override
     protected EntityManager getEntityManager() {
