@@ -35,6 +35,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import javax.ws.rs.QueryParam;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -149,7 +151,13 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
         return userList;
     }
        
-       
+    /**
+     *
+     * @param id
+     * @return
+     * @throws ParseException
+     * @throws ClassNotFoundException
+     */
     @Path("/{id}")
     @GET
     @Produces("application/json")
@@ -165,7 +173,9 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
             ps = con.prepareStatement(query);
             ps.setString(1, id);
             ResultSet resultSet = ps.executeQuery();
+            List<Object> listaObj = new ArrayList<>();
             Usuari user2=new Usuari();
+            
             if(resultSet.next()) {     //if is correct go to main
                 user2.setNom(resultSet.getString(3));
                 user2.setCognom1(resultSet.getString(4));
@@ -179,13 +189,16 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
                 user2.setDataNaix(dateObj);
                 user2.setSexe(resultSet.getString(10));
                 user2.setContrasenya(resultSet.getString(2));
+                listaObj.add(user2);
             }
+            
             List<Comanda> listaComanda= new ArrayList<Comanda>();
             Comanda comanda;
             query = "SELECT ID_OFERTA, PERSONAS, PREU_TOTAL FROM COMANDA WHERE COMANDA.ID_USUARI=?";
             ps = con.prepareStatement(query);
             ps.setString(1, id);
             resultSet = ps.executeQuery();
+            
             while(resultSet.next()){
                 comanda=new Comanda();
                 //comanda.setIdOferta(resultSet.getObject(1, Oferta.class)); # esto de momento falla
@@ -193,9 +206,11 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
                 comanda.setPreuTotal(resultSet.getDouble(3));
                 listaComanda.add(comanda);
             }
+            
+            listaObj.add(listaComanda);
             con.close();
             Gson gs2 =new Gson();
-            resultado = gs2.toJson(user2).concat(gs2.toJson(listaComanda));
+            resultado = gs2.toJson(listaObj);
         } catch (SQLException ex) {
             while(ex != null) {
                 System.out.println("Message:  " + ex.getMessage());
@@ -206,7 +221,75 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
         }
         return resultado;
     }
-    
+       
+    /**
+     *
+     * @param id
+     * @return
+     * @throws ParseException
+     * @throws ClassNotFoundException
+     */
+    @Path("/{id}")
+    @GET
+    @Produces("application/xml")
+       public List<Object> getUserXml(@PathParam("id") String id) throws ParseException, ClassNotFoundException {
+        PreparedStatement ps = null;
+        Connection con;
+        List<Object> listaObj = new ArrayList<>();
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");    //database connection
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
+            con.setSchema("DEMODB");
+            String query = "SELECT * FROM USUARI WHERE ALIAS = ?";
+            ps = con.prepareStatement(query);
+            ps.setString(1, id);
+            ResultSet resultSet = ps.executeQuery();
+            Usuari user2=new Usuari();
+            
+            if(resultSet.next()) {     //if is correct go to main
+                user2.setNom(resultSet.getString(3));
+                user2.setCognom1(resultSet.getString(4));
+                user2.setCognom2(resultSet.getString(5));
+                user2.setEmail(resultSet.getString(8));
+                user2.setTelefon(resultSet.getString(7));
+                user2.setAlias(resultSet.getString(1));
+                user2.setAdreça(resultSet.getString(6));
+                SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-MM-dd"); 
+                Date dateObj = curFormater.parse(resultSet.getString(9)); 
+                user2.setDataNaix(dateObj);
+                user2.setSexe(resultSet.getString(10));
+                user2.setContrasenya(resultSet.getString(2));
+                listaObj.add(user2);
+            }
+            
+            List<Comanda> listaComanda= new ArrayList<Comanda>();
+            Comanda comanda;
+            query = "SELECT ID_OFERTA, PERSONAS, PREU_TOTAL FROM COMANDA WHERE COMANDA.ID_USUARI=?";
+            ps = con.prepareStatement(query);
+            ps.setString(1, id);
+            resultSet = ps.executeQuery();
+            
+            while(resultSet.next()){
+                comanda=new Comanda();
+                //comanda.setIdOferta(resultSet.getObject(1, Oferta.class)); # esto de momento falla
+                comanda.setPersonas(resultSet.getInt(2));
+                comanda.setPreuTotal(resultSet.getDouble(3));
+                listaComanda.add(comanda);
+            }
+            
+            listaObj.add(listaComanda);
+            con.close();
+        } catch (SQLException ex) {
+            while(ex != null) {
+                System.out.println("Message:  " + ex.getMessage());
+                System.out.println("SQLSTATE: " + ex.getSQLState());            
+                System.out.println("Código de error SQL: " + ex.getErrorCode()); 
+                ex=ex.getNextException();
+            }
+        }
+        return listaObj;
+    }
+       
     /*********************************/   
     /* OPCIONAL: Modifica una oferta.*/
     /*********************************/
