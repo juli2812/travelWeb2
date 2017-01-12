@@ -196,6 +196,13 @@ public class OfertaFacadeREST extends AbstractFacade<Oferta> {
         return offer;
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     * @throws ParseException
+     * @throws ClassNotFoundException
+     */
     @GET
     @Path("/{id}")
     @Produces("application/json")
@@ -240,6 +247,11 @@ public class OfertaFacadeREST extends AbstractFacade<Oferta> {
         return resultado;
     }
     
+    /**
+     *
+     * @param data
+     * @throws ClassNotFoundException
+     */
     @POST
     @Consumes("application/json")
        public void addOferta(String data) throws ClassNotFoundException {
@@ -275,7 +287,12 @@ public class OfertaFacadeREST extends AbstractFacade<Oferta> {
         }
     }
     
-    
+    /**
+     *
+     * @param data
+     * @throws ClassNotFoundException
+     * @throws JAXBException
+     */
     @POST
     @Consumes("application/xml")
        public void addOfertaXml(String data) throws ClassNotFoundException, JAXBException {
@@ -313,14 +330,13 @@ public class OfertaFacadeREST extends AbstractFacade<Oferta> {
         }
     }
        
-       
-    /*********************************/   
-    /* OPCIONAL: Modifica una oferta.*/
     /**
-     * @param id*
-     * @param data*
-     * @throws java.text.ParseException*
-     * @throws java.lang.ClassNotFoundException****************************/
+     *
+     * @param id
+     * @param data
+     * @throws ParseException
+     * @throws ClassNotFoundException
+     */
     @PUT   
     @Path("/{id}")
     @Consumes("application/json")
@@ -359,14 +375,14 @@ public class OfertaFacadeREST extends AbstractFacade<Oferta> {
         }
     }
        
-    /*********************************/   
-    /* OPCIONAL: Modifica una oferta.*/
     /**
-     * @param id*
-     * @param data*
-     * @throws java.text.ParseException*
-     * @throws java.lang.ClassNotFoundException*
-     * @throws javax.xml.bind.JAXBException***************************/
+     *
+     * @param id
+     * @param data
+     * @throws ParseException
+     * @throws ClassNotFoundException
+     * @throws JAXBException
+     */
     @PUT   
     @Path("/{id}")
     @Consumes("application/xml")
@@ -406,10 +422,12 @@ public class OfertaFacadeREST extends AbstractFacade<Oferta> {
             
         }
     }
-    
-    /********************************/   
-    /* OPCIONAL: Elimina una oferta.*/
-    /********************************/
+
+    /**
+     *
+     * @param id
+     * @throws ClassNotFoundException
+     */
     @DELETE
     @Path("/{id}")
        public void delOffer(@PathParam("id") String id) throws ClassNotFoundException {

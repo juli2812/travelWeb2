@@ -110,6 +110,12 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
         return resultado;
     }
      
+    /**
+     *
+     * @return
+     * @throws ParseException
+     * @throws ClassNotFoundException
+     */
     @GET
     @Produces("application/xml")
        public List<Usuari> getUsersXml() throws ParseException, ClassNotFoundException {
@@ -172,9 +178,12 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
     /**
      *
      * @param id
+     * @param user
+     * @param pass
      * @return
      * @throws ParseException
      * @throws ClassNotFoundException
+     * @throws java.sql.SQLException
      */
     @Path("/{id}")
     @GET
@@ -311,71 +320,33 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
         return listaObj;
     }
      
-      
-    /*********************************/   
-    /* OPCIONAL: Modifica una oferta.*/
-    /*********************************/
+    /**
+     *
+     * @param id
+     * @param data
+     * @param user
+     * @param pass
+     * @throws ParseException
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     @PUT   
     @Path("/{id}")
     @Consumes("application/json")
-       public void updateOffer(@PathParam("id") String id, String data, @QueryParam("user") String user,@QueryParam("pass") String pass) throws ParseException, ClassNotFoundException, SQLException {
+       public void updateUser(@PathParam("id") String id, String data, @QueryParam("user") String user,@QueryParam("pass") String pass) throws ParseException, ClassNotFoundException, SQLException {
         PreparedStatement ps;
         Connection con;
         String alias = getLogin(user, pass);
         if(user.equals(alias)){
         try {
             Gson gs =new Gson();
-            Oferta oferta=gs.fromJson(data, Oferta.class);
-            Class.forName("org.apache.derby.jdbc.ClientDriver");    //database connection
-            con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
-            con.setSchema("DEMODB");
-            String query = "UPDATE OFERTA SET titol_oferta=?,descripcio=?,places_disp=?,preu_pers=?,desti=?,data_sortida=?,data_tornada=?,dies_estada=?,descripcio_gran=? where oferta_id=?";
-            ps = con.prepareStatement(query);
-            ps.setString(1, oferta.getTitolOferta());
-            ps.setString(2, oferta.getDescripcio());
-            ps.setInt(3, oferta.getPlacesDisp());
-            ps.setDouble(4, oferta.getPreuPers());
-            ps.setString(5, oferta.getDesti());
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            ps.setString(6, df.format(oferta.getDataSortida()));
-            ps.setString(7, df.format(oferta.getDataTornada()));
-            ps.setInt(8,oferta.getDiesEstada());
-            ps.setString(9, oferta.getDescripcioGran());
-            ps.setString(10, id);
-            ps.executeUpdate();
-            con.close();
-        } catch (SQLException ex) {
-            while(ex != null) {
-                System.out.println("Message:  " + ex.getMessage());
-                System.out.println("SQLSTATE: " + ex.getSQLState());            
-                System.out.println("Código de error SQL: " + ex.getErrorCode()); 
-                ex=ex.getNextException();
-            }
-            
-        }
-        }
-    }
-       
-    @PUT   
-    @Path("/{id}")
-    @Consumes("application/xml")
-       public void updateUserXml(@PathParam("id") String id,String data, @QueryParam("user") String user,@QueryParam("pass") String pass) throws ParseException, ClassNotFoundException, JAXBException, SQLException {
-        PreparedStatement ps;
-        Connection con = null;
-        StringReader sr = new StringReader(data);
-        JAXBContext jaxbContext = JAXBContext.newInstance(Usuari.class);
-        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        Usuari usuari = (Usuari) unmarshaller.unmarshal(sr);
-        
-        String alias = getLogin(user, pass);
-        if(user.equals(alias)){
-        try {
+            Usuari usuari=gs.fromJson(data, Usuari.class);
             Class.forName("org.apache.derby.jdbc.ClientDriver");    //database connection
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
             con.setSchema("DEMODB");
             String query = "UPDATE USUARI SET CONTRASENYA = ?,NOM = ?,COGNOM1=?,COGNOM2=?,ADREÇA=?,TELEFON=?,EMAIL=?,DATA_NAIX=?,SEXE=? WHERE ALIAS = ?";
             ps = con.prepareStatement(query);
-            ps.setString(1, usuari.getContrasenya());
+            ps.setString(1, DigestUtils.sha1Hex(usuari.getContrasenya()));
             ps.setString(2, usuari.getNom());
             ps.setString(3, usuari.getCognom1());
             ps.setString(4, usuari.getCognom2());
@@ -399,7 +370,67 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
         }
         }
     }
-    
+     
+    /**
+     *
+     * @param id
+     * @param data
+     * @param user
+     * @param pass
+     * @throws ParseException
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws JAXBException
+     */
+    @PUT   
+    @Path("/{id}")
+    @Consumes("application/xml")
+       public void updateUserXml(@PathParam("id") String id, String data, @QueryParam("user") String user,@QueryParam("pass") String pass) throws ParseException, ClassNotFoundException, SQLException, JAXBException {
+        PreparedStatement ps;
+        Connection con;
+        StringReader sr = new StringReader(data);
+        JAXBContext jaxbContext = JAXBContext.newInstance(Usuari.class);
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        Usuari u = (Usuari) unmarshaller.unmarshal(sr);
+        String alias = getLogin(user, pass);
+        if(user.equals(alias)){
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");    //database connection
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
+            con.setSchema("DEMODB");
+            String query = "UPDATE USUARI SET CONTRASENYA = ?,NOM = ?,COGNOM1=?,COGNOM2=?,ADREÇA=?,TELEFON=?,EMAIL=?,DATA_NAIX=?,SEXE=? WHERE ALIAS = ?";
+            ps = con.prepareStatement(query);
+            ps.setString(1, DigestUtils.sha1Hex(u.getContrasenya()));
+            ps.setString(2, u.getNom());
+            ps.setString(3, u.getCognom1());
+            ps.setString(4, u.getCognom2());
+            ps.setString(5, u.getAdreça());
+            ps.setString(6, u.getTelefon());
+            ps.setString(7, u.getEmail());
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            ps.setString(8, df.format(u.getDataNaix()));
+            ps.setString(9, u.getSexe());
+            ps.setString(10, id);
+            ps.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            while(ex != null) {
+                System.out.println("Message:  " + ex.getMessage());
+                System.out.println("SQLSTATE: " + ex.getSQLState());            
+                System.out.println("Código de error SQL: " + ex.getErrorCode()); 
+                ex=ex.getNextException();
+            }
+            
+        }
+        }
+    }
+
+    /**
+     *
+     * @param data
+     * @throws ClassNotFoundException
+     * @throws JAXBException
+     */
     @POST
     @Consumes("application/xml")
        public void addUserXml(String data) throws ClassNotFoundException, JAXBException {
@@ -416,7 +447,7 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
             String query = "INSERT INTO USUARI(ALIAS,CONTRASENYA,NOM,COGNOM1,COGNOM2,ADREÇA,TELEFON,EMAIL,DATA_NAIX,SEXE) VALUES(?,?,?,?,?,?,?,?,?,?)";
             ps = con.prepareStatement(query);
             ps.setString(1, u.getAlias());
-            ps.setString(2, u.getContrasenya());
+            ps.setString(2, DigestUtils.sha1Hex(u.getContrasenya()));
             ps.setString(3, u.getNom());
             ps.setString(4, u.getCognom1());
             ps.setString(5, u.getCognom2());
@@ -453,7 +484,7 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
             String query = "INSERT INTO USUARI(ALIAS,CONTRASENYA,NOM,COGNOM1,COGNOM2,ADREÇA,TELEFON,EMAIL,DATA_NAIX,SEXE) VALUES(?,?,?,?,?,?,?,?,?,?)";
             ps = con.prepareStatement(query);
             ps.setString(1, u.getAlias());
-            ps.setString(2, u.getContrasenya());
+            ps.setString(2, DigestUtils.sha1Hex(u.getContrasenya()));
             ps.setString(3, u.getNom());
             ps.setString(4, u.getCognom1());
             ps.setString(5, u.getCognom2());
@@ -475,9 +506,14 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
         }
     }
        
-    /********************************/   
-    /* OPCIONAL: Elimina un usuari. */
-    /********************************/
+    /**
+     *
+     * @param id
+     * @param user
+     * @param pass
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     @DELETE
     @Path("/{id}")
        public void delUser(@PathParam("id") String id, @QueryParam("user") String user,@QueryParam("pass") String pass) throws ClassNotFoundException, SQLException {

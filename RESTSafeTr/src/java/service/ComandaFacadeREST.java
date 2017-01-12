@@ -48,6 +48,13 @@ public class ComandaFacadeREST extends AbstractFacade<Comanda> {
         super(Comanda.class);
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     * @throws ParseException
+     * @throws ClassNotFoundException
+     */
     @GET
     @Produces("application/json")
        public String getComanda(@PathParam("id") String id) throws ParseException, ClassNotFoundException {
@@ -89,6 +96,14 @@ public class ComandaFacadeREST extends AbstractFacade<Comanda> {
         return resultado;
     }
     
+    /**
+     *
+     * @param id
+     * @param userName
+     * @param data
+     * @throws ParseException
+     * @throws ClassNotFoundException
+     */
     @POST
     @Consumes("application/json")
        public void updateOffer(@PathParam("id") String id, @QueryParam("userName") String userName, String data) throws ParseException, ClassNotFoundException {
@@ -161,53 +176,6 @@ public class ComandaFacadeREST extends AbstractFacade<Comanda> {
             
         }
     }
-    /*@POST
-    @Override
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Comanda entity) {
-        super.create(entity);
-    }
-
-    @PUT
-    @Path("{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Integer id, Comanda entity) {
-        super.edit(entity);
-    }
-
-    @DELETE
-    @Path("{id}")
-    public void remove(@PathParam("id") Integer id) {
-        super.remove(super.find(id));
-    }
-
-    @GET
-    @Path("{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Comanda find(@PathParam("id") Integer id) {
-        return super.find(id);
-    }
-
-    @GET
-    @Override
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Comanda> findAll() {
-        return super.findAll();
-    }
-
-    @GET
-    @Path("{from}/{to}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Comanda> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-        return super.findRange(new int[]{from, to});
-    }
-
-    @GET
-    @Path("count")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String countREST() {
-        return String.valueOf(super.count());
-    }*/
 
     @Override
     protected EntityManager getEntityManager() {
