@@ -119,7 +119,7 @@ public class ComandaFacadeREST extends AbstractFacade<Comanda> {
                 user2.setSexe(resultSet.getString(10));
                 user2.setContrasenya(resultSet.getString(2));
             }
-            String query4 = "SELECT * FROM OFERTA WHERE OFERTA_ID = ?";
+            /*String query4 = "SELECT * FROM OFERTA WHERE OFERTA_ID = ?";
             ps = con.prepareStatement(query4);
             ps.setString(1, id);
             resultSet = ps.executeQuery();
@@ -137,7 +137,7 @@ public class ComandaFacadeREST extends AbstractFacade<Comanda> {
                 offer.setDataTornada(curFormater.parse(resultSet.getString(8)));
                 offer.setDiesEstada(resultSet.getInt(9));
                 offer.setDescripcioGran(resultSet.getString(10));
-            }
+            }*/
            /* String query2 = "INSERT INTO COMANDA(id_usuari,id_oferta,preu_total,personas,data,hora) VALUES (?,?,?,?,?,?)";
             ps = con.prepareStatement(query2);
             ps.setString(1, user2.getAlias());

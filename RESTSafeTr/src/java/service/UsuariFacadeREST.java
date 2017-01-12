@@ -41,6 +41,7 @@ import javax.ws.rs.QueryParam;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -150,6 +151,23 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
         }
         return userList;
     }
+      
+    public String getLogin (String alias, String pass) throws SQLException{
+        Connection con;
+        PreparedStatement ps;
+        con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
+            con.setSchema("DEMODB");
+            String query = "SELECT * FROM demodb.usuari WHERE alias=? AND contrasenya=?";
+            ps = con.prepareStatement(query);
+                    ps.setString(1, alias);
+                    ps.setString(2, DigestUtils.sha1Hex(pass));
+            
+            ResultSet resultSet=ps.executeQuery();
+            if (resultSet.next()) {
+            return alias;
+            }
+            else return "";
+    }
        
     /**
      *
@@ -161,10 +179,12 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
     @Path("/{id}")
     @GET
     @Produces("application/json")
-       public String getUser(@PathParam("id") String id) throws ParseException, ClassNotFoundException {
+       public String getUser(@PathParam("id") String id,@QueryParam("user") String user,@QueryParam("pass") String pass) throws ParseException, ClassNotFoundException, SQLException {
         PreparedStatement ps = null;
         Connection con;
         String resultado = "";
+        String alias = getLogin(user, pass);
+        if(user.equals(alias)){
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");    //database connection
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
@@ -218,6 +238,7 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
                 System.out.println("Código de error SQL: " + ex.getErrorCode()); 
                 ex=ex.getNextException();
             }
+        }
         }
         return resultado;
     }
@@ -289,16 +310,19 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
         }
         return listaObj;
     }
-       
+     
+      
     /*********************************/   
     /* OPCIONAL: Modifica una oferta.*/
     /*********************************/
     @PUT   
     @Path("/{id}")
     @Consumes("application/json")
-       public void updateOffer(@PathParam("id") String id, String data) throws ParseException, ClassNotFoundException {
+       public void updateOffer(@PathParam("id") String id, String data, @QueryParam("user") String user,@QueryParam("pass") String pass) throws ParseException, ClassNotFoundException, SQLException {
         PreparedStatement ps;
         Connection con;
+        String alias = getLogin(user, pass);
+        if(user.equals(alias)){
         try {
             Gson gs =new Gson();
             Oferta oferta=gs.fromJson(data, Oferta.class);
@@ -329,18 +353,22 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
             }
             
         }
+        }
     }
        
     @PUT   
     @Path("/{id}")
     @Consumes("application/xml")
-       public void updateUserXml(@PathParam("id") String id,@QueryParam("userName") String userName, @QueryParam("password") String password, String data) throws ParseException, ClassNotFoundException, JAXBException {
+       public void updateUserXml(@PathParam("id") String id,String data, @QueryParam("user") String user,@QueryParam("pass") String pass) throws ParseException, ClassNotFoundException, JAXBException, SQLException {
         PreparedStatement ps;
         Connection con = null;
         StringReader sr = new StringReader(data);
         JAXBContext jaxbContext = JAXBContext.newInstance(Usuari.class);
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         Usuari usuari = (Usuari) unmarshaller.unmarshal(sr);
+        
+        String alias = getLogin(user, pass);
+        if(user.equals(alias)){
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");    //database connection
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
@@ -368,6 +396,7 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
                 ex=ex.getNextException();
             }
             
+        }
         }
     }
     
@@ -451,9 +480,12 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
     /********************************/
     @DELETE
     @Path("/{id}")
-       public void delUser(@PathParam("id") String id) throws ClassNotFoundException {
+       public void delUser(@PathParam("id") String id, @QueryParam("user") String user,@QueryParam("pass") String pass) throws ClassNotFoundException, SQLException {
         PreparedStatement ps;
         Connection con;
+        
+        String alias = getLogin(user, pass);
+        if(user.equals(alias)){
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");    //database connection
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/demodb", "user", "pwd");
@@ -470,6 +502,7 @@ public class UsuariFacadeREST extends AbstractFacade<Usuari> {
                 System.out.println("Código de error SQL: " + ex.getErrorCode()); 
                 ex=ex.getNextException();
              }
+        }
         }
     }
 
